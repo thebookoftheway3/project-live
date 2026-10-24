@@ -49,3 +49,5 @@ Contributions in modelling, accessibility, human factors, sensor integration, te
 Original Project LIVE code and documentation are provided under the [MIT License](LICENSE). Separate upstream projects and assets retain their own licenses; see [third-party provenance](THIRD_PARTY_NOTICES.md).
 
 Open source means shared software and methods. Health records, raw recordings, identifiers, credentials and signing material stay outside version control. The initial research runtime cannot command a pump.
+
+Engineering methodology and evidence: [safety methodology transfer assessment and evidence traceability](docs/assurance/TRANSFER_ASSESSMENT.md). This assessment does not establish clinical validation or authorize actuation.
