@@ -1,6 +1,6 @@
 # Project LIVE — direction and open decisions
 
-Updated 24 October 2026. Integration revision 3 extends the Bayesian blueprint with the project-supplied general-purpose virtual-sensor and progressive-inference addendum, now including Active Historical Investigation in the same open PR #2.
+Updated 24 October 2026. Integration revision 3 extends the Bayesian blueprint with the project-supplied general-purpose virtual-sensor and progressive-inference addendum, now including Active Historical Investigation through PR #2.
 
 ## Governing direction
 
@@ -15,11 +15,11 @@ Updated 24 October 2026. Integration revision 3 extends the Bayesian blueprint w
 - Keep inference providers replaceable. Local processing and mocks are first-class; Decisions is an optional researched candidate, not a dependency.
 - Preserve the non-actuating boundary and independent treatment operation. No executable dosing commands or silent treatment changes.
 
-## Current task scope
+## Integrated design and next implementation scope
 
-This change extends architecture, specifications, requirements and backlog on `docs/virtual-sensor-architecture` in the existing PR #2. Keep that PR open; do not merge it or create a competing PR. It proposes, but does not implement, the first synthetic vertical slice. It does not refactor working code, change CI, add credentials, make paid model calls, acquire live observations or change the treatment boundary.
+PR #2 integrates architecture, design requirements and backlog under the owner's explicit instruction of 24 October 2026, following governance PR #3 and assurance PR #4. Review was Codex-assisted; no independent human review is claimed. The requirements are accepted design intent, not implemented capabilities. Contract sketches and unresolved choices below still need bounded implementation decisions and tests. [ADR 0001](decisions/0001-modular-monolith-first.md) governs initial structure and [ADR 0002](decisions/0002-lightweight-assurance-traceability.md) governs consequential-claim traceability; neither selects a transport, provider or graph scheduler. This integration adds no credentials, live observations or treatment capability.
 
-The next implementation delivery should be the smallest end-to-end example: synthetic event → cheap detector → virtual sensor → selective fresh or historical mock inference → filtering/smoothing update → auditable replay. LIVE-022 must include the low-interest 12:30 event and simulated 14:30 mismatch, freezing both online snapshots while producing a separate retrospective interpretation. Deliver minimal in-process subsets of the backlog tasks together; do not build a large framework before exercising the complete path. The separate Loop simulator investigation can proceed independently and is not a prerequisite for this no-device slice.
+The complete LIVE-022 milestone is the bounded end-to-end example: synthetic event → cheap detector → virtual sensor → selective fresh or historical mock inference → filtering/smoothing update → auditable replay. LIVE-022 must include the low-interest 12:30 event and simulated 14:30 mismatch, freezing both online snapshots while producing a separate retrospective interpretation. Deliver this milestone through small independently reviewed in-process increments; a detector-to-belief/replay increment can come first, but cannot be labelled LIVE-022 complete. Retain all historical, chronology, permission/retention and correlation acceptance gates. Do not build a large framework before exercising the path. The separate Loop simulator investigation can proceed independently and is not a prerequisite for this no-device slice.
 
 ## Unresolved engineering decisions
 

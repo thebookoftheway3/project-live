@@ -1,5 +1,7 @@
 # Minimal virtual-sensor contracts — proposed
 
+PR #2 accepts the design requirements; these concrete API shapes remain proposed until the relevant implementation decision and tests resolve the [open choices](../PROJECT_DIRECTION.md#unresolved-engineering-decisions). Follow the [methodology](../METHODOLOGY.md) and link affected [claims and verification](../assurance/CLAIMS_MATRIX.md).
+
 These are semantic design sketches for LIVE-004, LIVE-005, LIVE-012, LIVE-017–020 and LIVE-023, not implemented schemas or provider-specific request payloads. Use a small in-process registry and indexed synthetic evidence first. Historical investigation extends these contracts and the existing planner; it is not a separate analytics system. Keep measurement units, domain hypotheses and physiological models outside infrastructure-specific types.
 
 ## Source adapter

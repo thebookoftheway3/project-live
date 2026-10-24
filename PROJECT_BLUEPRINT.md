@@ -2,7 +2,7 @@
 
 **Public engineering specification | 24 October 2026 | Integration revision 3: virtual sensors, Bayesian inference and active historical investigation**
 
-Adapted from the supplied Revision 2 specification for public collaboration. Personal history and treatment details are omitted; the original is preserved locally and identified by hash in `docs/SOURCE_MANIFEST.json`. Technical requirements are retained. Subsequent explicit project direction adds a public, open-source mission and active information gathering as a confirmed requirement. This integration incorporates the General-Purpose Virtual Sensor Architecture and Progressive Bayesian Inference addendum while retaining the Revision 2 Bayesian foundation. The same unmerged architecture/specification PR now includes Active Historical Investigation: investigating why predictions were wrong is a foundational capability. Neither extension authorizes live sensing or full implementation.
+Adapted from the supplied Revision 2 specification for public collaboration. Personal history and treatment details are omitted; the original is preserved locally and identified by hash in `docs/SOURCE_MANIFEST.json`. Technical requirements are retained. Subsequent explicit project direction adds a public, open-source mission and active information gathering as a confirmed requirement. This integration incorporates the General-Purpose Virtual Sensor Architecture and Progressive Bayesian Inference addendum while retaining the Revision 2 Bayesian foundation. The architecture/specification integrated through PR #2 includes Active Historical Investigation: investigating why predictions were wrong is a foundational capability. Neither extension authorizes live sensing or full implementation.
 
 **Status:** Open-source research for the benefit of people with diabetes. The first deliverable is a strictly non-actuating, read-only shadow system; it is not a validated treatment system. The insulin-focused initial scope does not establish suitability across every diabetes type, treatment, age group or device. Each person’s established treatment system operates independently.
 
@@ -465,6 +465,8 @@ Develop fault-injection tests with synthetic and de-identified data for:
 These scenarios are for **non-actuating simulation and fault detection**, not instructions for modifying clinical dosing.
 
 ## 14. Implementation sequence
+
+These are the longer-term physiological research phases. The immediate delivery order is the [synthetic LIVE-022 milestone](docs/BACKLOG.md), in small reviewed increments; live acquisition and the Loop simulator track are not prerequisites. Progression beyond synthetic work requires separate permission and assurance review under the [methodology](docs/METHODOLOGY.md).
 
 **Phase 0 — Establish the boundary.** Document actual equipment, treatment controller, supported APIs, read-only acquisition, data rights, safety ownership and clinical compatibility. Set up a synthetic pump simulator. No code capable of live dosing.
 

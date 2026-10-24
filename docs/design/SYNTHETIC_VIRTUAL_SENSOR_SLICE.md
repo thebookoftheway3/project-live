@@ -2,13 +2,13 @@
 
 **Proposed implementation, not implemented by this documentation PR.** Scope: synthetic event → cheap detector → virtual sensor → selective fresh or historical investigation → Bayesian belief update → auditable replay. Extend the same LIVE-022 slice and reuse LIVE-004/005/008/009/012/019. LIVE-023 supplies only the minimal searchable evidence index; no separate investigation engine is introduced.
 
-## Smallest executable milestone
+## Complete milestone and incremental delivery
 
 Use one in-process replay runner, a static registry, a finite joint hypothesis table, an indexed synthetic history and a mock image provider. Reuse the starter's replay conventions where suitable without asserting its existing event schema already meets the proposed contracts. A supplied synthetic forecast/observation pair triggers a simulated glucose-prediction mismatch; this does not implement a physiological forecaster. No camera access, audio capture, cloud requests, credentials, human prompts, executable glucose-forecasting model or insulin-dose calculations.
 
 A synthetic fixture supplies reference-only truth labels and separately accessible observations. Truth labels are evaluation data and must not enter the detector, planner or estimator input. Pin the fixture, prior, observation-likelihood, question, provider and policy versions. Use a logical clock and fixed seed where needed.
 
-The first executable milestone covers the principal sequence, the required 12:30/14:30 historical phase below, and its leakage, unavailable-history, correlated-evidence and consent/retention controls, together with the existing missing-camera/repeated-evidence controls. The remaining variants below are required before claiming the complete scenario family is validated. Historical investigation is foundational, not an optional analytics follow-up. This is not a production plugin ecosystem or full physiological twin.
+Deliver small independently reviewed increments, beginning with a synthetic detector-to-belief/replay path if useful. That first increment is not LIVE-022 completion. The complete milestone covers the principal sequence, the required 12:30/14:30 historical phase below, and its leakage, unavailable-history, correlated-evidence and consent/retention controls, together with the existing missing-camera/repeated-evidence controls. The remaining variants below are required before claiming the complete scenario family is validated. Historical investigation is foundational, not an optional analytics follow-up. This is not a production plugin ecosystem or full physiological twin.
 
 ## Principal sequence
 
@@ -95,4 +95,4 @@ Replay may reuse recorded mock results. A later live provider would require vers
 - Compare fresh-only and historically enabled policies at identical knowledge cutoffs, retention assumptions and budgets. Report query/inference cost, unavailable-history rate, changed hypothesis probabilities and explanation uncertainty separately from original predictive scores. Only newly issued future predictions may benefit prospectively from an investigation.
 - Historical acceptance requires frozen `online_1230` and `online_1430` digests, traceable later interpretation/smoothing IDs and passing the leakage/unavailable/correlation/consent-retention controls. Retrospective fit must never be presented as an improved original forecast or proof of causation.
 
-Implementation is complete only after the chosen milestone's tests and limits are reported. This document specifies the future work; existing seven starter tests do not exercise these behaviors.
+Implementation is complete only after the chosen milestone's tests and limits are reported. This document specifies the future work; existing starter tests do not exercise these behaviors.

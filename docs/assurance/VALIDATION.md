@@ -1,5 +1,7 @@
 # Transfer assessment validation and limitations
 
+The original validation sections below are a historical record at the stated revisions, including then-proposed ADR states. The final integration section records subsequent acceptance; consult the [ADR register](../decisions/README.md) for current decision status.
+
 Prepared 24 October 2026 on `codex/safety-methodology-transfer`, based on main `0a99fa78ed9d2a7c818f90933afc93a448375de5`. This is documentation validation and bounded evidence for the [claims matrix](CLAIMS_MATRIX.md), not clinical validation, certification or proof of equivalent residual risk.
 
 ## Evidence subject and reproduction

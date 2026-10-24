@@ -1,6 +1,6 @@
 # Virtual sensors, progressive Bayesian inference and historical investigation
 
-Design integration revision 3: the existing Bayesian blueprint, virtual-sensor addendum and Active Historical Investigation extension in the same unmerged PR. This is a logical, in-process-first design. Current code still implements only synthetic replay and illustrative meal inference.
+Design integration revision 3: the existing Bayesian blueprint, virtual-sensor addendum and Active Historical Investigation extension integrated through PR #2. This is accepted design intent under [ADR 0001](../decisions/0001-modular-monolith-first.md), with [ADR 0002](../decisions/0002-lightweight-assurance-traceability.md) traceability for affected invariants; concrete APIs remain design sketches. This is a logical, in-process-first design. Current code still implements only synthetic replay and illustrative meal inference.
 
 **The sensor is the question, not the hardware.** Authorized numerical, time-series, image, audio, event and log streams are potential evidence sources. Reusable sensing infrastructure is independent of the diabetes-specific physiological model. Other applications are possible reuse, not new product commitments.
 
