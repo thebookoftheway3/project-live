@@ -59,3 +59,5 @@ Open source means shared software and methods. Health records, raw recordings, i
 Engineering methodology and evidence: [safety methodology transfer assessment and evidence traceability](docs/assurance/TRANSFER_ASSESSMENT.md). This assessment does not establish clinical validation or authorize actuation.
 
 Run the next bounded historical increment with `python3 -m project_live.cli history data/synthetic_history_v1.json`. It preserves online snapshots and emits a separate retrospective view; [executed evidence and remaining gaps](docs/assurance/LIVE022_HISTORY.md).
+
+The [Loop G6 research interface](docs/assurance/LOOP_G6_INTERFACE.md) provides a consent-gated local consumer for versioned observations from the restricted Loop fork. Run its synthetic fixture before any private observations; it has no pump or network interface.
