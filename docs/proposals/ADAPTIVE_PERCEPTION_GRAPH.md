@@ -4,7 +4,7 @@ Status: **Proposed future architectural issue; not approved or implemented.** Op
 
 ## Motivation and evidence needed
 
-Could explicit scheduling of dependent perception questions improve useful information per unit of compute, latency, privacy exposure and human attention? The current synthetic starter provides no measurements establishing that a graph scheduler is needed. Relate any future evaluation to R00, R08, R13, R15 and R17 and to whichever contracts from PR #2 are ultimately accepted.
+Could explicit scheduling of dependent perception questions improve useful information per unit of compute, latency, privacy exposure and human attention? The current synthetic starter provides no measurements establishing that a graph scheduler is needed. Relate any future evaluation to R00, R08, R13, R15 and R17 and to the contract sketches integrated through PR #2, resolving concrete APIs through their own decisions.
 
 ## Alternatives
 

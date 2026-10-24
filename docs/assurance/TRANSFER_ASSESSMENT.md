@@ -6,7 +6,7 @@ Read with the [traceability method](TRACEABILITY.md), [initial matrix](CLAIMS_MA
 
 ## Integration status — 24 October 2026
 
-PR #3 has merged as `4ab8501`, accepting the initial structure preference in ADR 0001. PR #4 adopts only the lightweight method through ADR 0002, links it into METHODOLOGY and the ADR register, and leaves the graph, semantic-transition design, provider isolation and future studies unapproved. PR #2 remains under separate integration review. The baseline table and assessment below preserve the pre-integration evidence and proposal states; they are historical context, not current merge status. The original source restrictions remain unchanged.
+PR #3 has merged as `4ab8501`, accepting the initial structure preference in ADR 0001. PR #4 adopts only the lightweight method through ADR 0002, links it into METHODOLOGY and the ADR register, and leaves the graph, semantic-transition design, provider isolation and future studies unapproved. PR #2 integrates its design requirements with methodology/assurance links; concrete API decisions and LIVE-022 implementation remain pending. The baseline table and assessment below preserve the pre-integration evidence and proposal states; they are historical context, not current merge status. The original source restrictions remain unchanged.
 
 ## Source handling and decision baseline
 

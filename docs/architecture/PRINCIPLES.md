@@ -1,6 +1,6 @@
 # Modular architectural principles
 
-These are engineering constraints for future proposals, linked to [ADR 0001](../decisions/0001-modular-monolith-first.md). They do not implement features, replace [SYSTEM.md](SYSTEM.md), change the physiological model or accept the unmerged contracts in [PR #2](https://github.com/thebookoftheway3/project-live/pull/2).
+These are engineering constraints for future proposals, linked to [ADR 0001](../decisions/0001-modular-monolith-first.md). They do not implement features, replace [SYSTEM.md](SYSTEM.md), change the physiological model or turn the [PR #2 contract sketches](VIRTUAL_SENSOR_CONTRACTS.md) into implemented APIs.
 
 Prefer a modular monolith initially. The following are logical responsibilities, not mandatory processes, packages, services or hardware. Define detailed interfaces through separately scoped ADRs and contract PRs before implementation.
 
@@ -10,7 +10,7 @@ Prefer a modular monolith initially. The following are logical responsibilities,
 | Virtual-sensor definitions and execution | Versioned questions and bounded interpretation of permitted inputs; emit evidence with dependencies and uncertainty, not an independent authoritative belief state. |
 | Evidence storage and provenance | Original observations and derived interpretations separately identified, retention/permission-aware retrieval and traceable lineage; no silent rewriting of past evidence. |
 | Bayesian belief-state estimation | Own one coherent logical joint belief state per research subject, with dependencies, uncertainty and versioned snapshots. |
-| Active acquisition and historical investigation | Propose bounded evidence requests within permissions, retention and resource limits; stopping and unknown are valid outcomes. Detailed historical contracts remain under separate review. |
+| Active acquisition and historical investigation | Propose bounded evidence requests within permissions, retention and resource limits; stopping and unknown are valid outcomes. Historical contract sketches are maintained in VIRTUAL_SENSOR_CONTRACTS.md. |
 | Adaptive perception graph scheduling | Reserved responsibility for possible future scheduling evaluation, not an accepted graph design or required implementation. See the [separate proposal](../proposals/ADAPTIVE_PERCEPTION_GRAPH.md). |
 | Simulation and evaluation | Synthetic/replay workloads, chronological comparisons and scoring; never real actuation or a claim of clinical validation. |
 

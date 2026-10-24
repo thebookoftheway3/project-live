@@ -16,6 +16,6 @@ Changes to interfaces, architectural boundaries or invariants require an ADR or 
 | ADR | Status | Scope |
 | --- | --- | --- |
 | [0001](0001-modular-monolith-first.md) | Accepted | Initial implementation structure and criteria for later distribution |
-| [0002](0002-lightweight-assurance-traceability.md) | Accepted on PR #4 merge | Proportionate research claim traceability and evidence validity |
+| [0002](0002-lightweight-assurance-traceability.md) | Accepted | Proportionate research claim traceability and evidence validity |
 
-Existing blueprint decision identifiers (such as D08) retain their meaning; ADR numbering does not renumber them. PR #2 remains an independent, unmerged specification review.
+Existing blueprint decision identifiers (such as D08) retain their meaning; ADR numbering does not renumber them. PR #2 integrates design requirements; its concrete contract choices remain in the [open-decision register](../PROJECT_DIRECTION.md#unresolved-engineering-decisions). The Adaptive Perception Graph remains a separate proposed design.
