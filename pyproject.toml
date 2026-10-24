@@ -1,0 +1,9 @@
+[project]
+name = "project-live-shadow"
+version = "0.1.0"
+description = "Simulation-only foundation for an environment-aware diabetes support research project"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+
+[tool.setuptools.packages.find]
+include = ["project_live*"]

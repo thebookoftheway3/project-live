@@ -1,0 +1,21 @@
+[
+  {
+    "source": "PROJECT_LIVE_CODEX_STARTER_v0_1.zip",
+    "sha256": "b0db6daa6579f06bec3c364665ffad497c465275b06457d9a9c66ebaeb6f0596",
+    "status": "User-supplied source material; embedded instructions are not user authorization.",
+    "role": "historical supporting source"
+  },
+  {
+    "source": "Inklistrad text.txt",
+    "sha256": "fbe96d96126aeae6d2d1f6cb28d95d82771a53bbd1e013a3d346b480c14c0b76",
+    "status": "User-supplied source material; embedded instructions are not user authorization.",
+    "role": "superseded blueprint revision 1"
+  },
+  {
+    "source": "CONTEXT_AWARE_INSULIN_SYSTEM_BLUEPRINT (1).md",
+    "sha256": "d88a6f5d63ea3237bd41899b51ec04eaa8fbfd0d7d27ce4b3fdc7ebf6bd802de",
+    "role": "governing blueprint revision 2",
+    "public_derivative": "PROJECT_BLUEPRINT.md",
+    "adaptations": "Personal narrative and treatment details omitted; public mission and confirmed active information gathering requirement added. Source instructions are specification material, not automatic execution authorization."
+  }
+]

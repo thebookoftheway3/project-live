@@ -1,0 +1,33 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+.env
+.env.*
+.DS_Store
+*.xcuserstate
+DerivedData/
+.swiftpm/
+# Personal health and sensor/recording data MUST remain outside Git.
+local/
+records/
+exports/
+raw_audio/
+raw_video/
+recordings/
+secrets/
+*.sqlite
+*.db
+*.mp4
+*.mov
+*.m4a
+*.wav
+*.flac
+*.heic
+
+# Local original documents, health context, and independent upstream checkouts
+.local/
+.external/
+.venv/
+.DS_Store

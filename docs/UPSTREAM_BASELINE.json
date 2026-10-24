@@ -1,0 +1,209 @@
+{
+  "recorded_on": "2026-10-24",
+  "workspace": {
+    "upstream": "https://github.com/LoopKit/LoopWorkspace",
+    "fork": "https://github.com/thebookoftheway3/LoopWorkspace",
+    "tag": "v3.14.9",
+    "commit": "548b33245198eaae165c094c9c68fe333cb69c05"
+  },
+  "app_fork": "https://github.com/thebookoftheway3/Loop",
+  "components": [
+    {
+      "path": "AmplitudeService",
+      "commit": "f786858870fde95ea558f766e94be790ef4c903b",
+      "upstream": "https://github.com/LoopKit/AmplitudeService.git"
+    },
+    {
+      "path": "CGMBLEKit",
+      "commit": "ea224e771fb3329a957a753296232c62a003a9fe",
+      "upstream": "https://github.com/LoopKit/CGMBLEKit.git"
+    },
+    {
+      "path": "EversenseKit",
+      "commit": "e1bb6faf01bb4bd79872ae6d12787aea8bfe2ad5",
+      "upstream": "https://github.com/bastiaanv/EversenseKit"
+    },
+    {
+      "path": "G7SensorKit",
+      "commit": "dd91f465b8b7392354b74463b9b9cc7aae32db9f",
+      "upstream": "https://github.com/LoopKit/G7SensorKit.git"
+    },
+    {
+      "path": "LibreTransmitter",
+      "commit": "41105123c3c4fb5c55ce89a38630cea2f8f7a17a",
+      "upstream": "https://github.com/LoopKit/LibreTransmitter.git"
+    },
+    {
+      "path": "LogglyService",
+      "commit": "d5f93ff356e8df247107bdd7456adab44ec343e9",
+      "upstream": "https://github.com/LoopKit/LogglyService.git"
+    },
+    {
+      "path": "Loop",
+      "commit": "c30b5c89b1dc4151628f33f1384dd4796eaeeec2",
+      "upstream": "https://github.com/LoopKit/Loop.git"
+    },
+    {
+      "path": "LoopKit",
+      "commit": "d9f1437353482690426bd981536f58c1e95ff535",
+      "upstream": "https://github.com/LoopKit/LoopKit.git"
+    },
+    {
+      "path": "LoopOnboarding",
+      "commit": "1ac6b2fe4fb6413febab3327b0cb2c7a05403759",
+      "upstream": "https://github.com/LoopKit/LoopOnboarding.git"
+    },
+    {
+      "path": "LoopSupport",
+      "commit": "21957dfec01d401edf8c7f9574a2975b60e7592b",
+      "upstream": "https://github.com/LoopKit/LoopSupport"
+    },
+    {
+      "path": "MedtrumKit",
+      "commit": "ef866fa68db22932271af9bce86372ced8604203",
+      "upstream": "https://github.com/jbr7rr/MedtrumKit"
+    },
+    {
+      "path": "MinimedKit",
+      "commit": "a7b26858e3073ac8881e7303b675c6b0f8c51ee9",
+      "upstream": "https://github.com/LoopKit/MinimedKit.git"
+    },
+    {
+      "path": "Minizip",
+      "commit": "66483b42479a86d095ec642b2f6819e1abbe30d3",
+      "upstream": "https://github.com/LoopKit/Minizip.git"
+    },
+    {
+      "path": "MixpanelService",
+      "commit": "b33debdac37d6ef3be955eebb0c42495a1f19232",
+      "upstream": "https://github.com/LoopKit/MixpanelService"
+    },
+    {
+      "path": "NightscoutRemoteCGM",
+      "commit": "45b4efd3ffee943832dbeb608b4cb4baeb53fb12",
+      "upstream": "https://github.com/LoopKit/NightscoutRemoteCGM.git"
+    },
+    {
+      "path": "NightscoutService",
+      "commit": "2cef4896f0704fb112575ab34b596ee7de78e48d",
+      "upstream": "https://github.com/LoopKit/NightscoutService.git"
+    },
+    {
+      "path": "OmnipodKit",
+      "commit": "043b91dbf1958d26c55d927a6a8d651bc91f208d",
+      "upstream": "https://github.com/loopandlearn/OmnipodKit"
+    },
+    {
+      "path": "RileyLinkKit",
+      "commit": "049f0d51b2fb90fa5180f3f62555d8c661b55968",
+      "upstream": "https://github.com/LoopKit/RileyLinkKit"
+    },
+    {
+      "path": "TidepoolService",
+      "commit": "99ac3544f8462973f6ea886d1a46c2954ad0cc0f",
+      "upstream": "https://github.com/LoopKit/TidepoolService.git"
+    },
+    {
+      "path": "TrueTime.swift",
+      "commit": "5dc1285f3ea85fed3d132fb226c969d6a06b1208",
+      "upstream": "https://github.com/LoopKit/TrueTime.swift.git"
+    },
+    {
+      "path": "dexcom-share-client-swift",
+      "commit": "ff0d71433447af3c93dac450d95c14b63f58f417",
+      "upstream": "https://github.com/LoopKit/dexcom-share-client-swift.git"
+    }
+  ],
+  "meaning": "Reproducible research starting point from supplied blueprint; not a clinical recommendation or completed build validation.",
+  "recursive_submodules": [
+    {
+      "commit": "f786858870fde95ea558f766e94be790ef4c903b",
+      "path": "AmplitudeService"
+    },
+    {
+      "commit": "ea224e771fb3329a957a753296232c62a003a9fe",
+      "path": "CGMBLEKit"
+    },
+    {
+      "commit": "e1bb6faf01bb4bd79872ae6d12787aea8bfe2ad5",
+      "path": "EversenseKit"
+    },
+    {
+      "commit": "dd91f465b8b7392354b74463b9b9cc7aae32db9f",
+      "path": "G7SensorKit"
+    },
+    {
+      "commit": "41105123c3c4fb5c55ce89a38630cea2f8f7a17a",
+      "path": "LibreTransmitter"
+    },
+    {
+      "commit": "d5f93ff356e8df247107bdd7456adab44ec343e9",
+      "path": "LogglyService"
+    },
+    {
+      "commit": "c30b5c89b1dc4151628f33f1384dd4796eaeeec2",
+      "path": "Loop"
+    },
+    {
+      "commit": "d9f1437353482690426bd981536f58c1e95ff535",
+      "path": "LoopKit"
+    },
+    {
+      "commit": "1ac6b2fe4fb6413febab3327b0cb2c7a05403759",
+      "path": "LoopOnboarding"
+    },
+    {
+      "commit": "21957dfec01d401edf8c7f9574a2975b60e7592b",
+      "path": "LoopSupport"
+    },
+    {
+      "commit": "ef866fa68db22932271af9bce86372ced8604203",
+      "path": "MedtrumKit"
+    },
+    {
+      "commit": "a7b26858e3073ac8881e7303b675c6b0f8c51ee9",
+      "path": "MinimedKit"
+    },
+    {
+      "commit": "66483b42479a86d095ec642b2f6819e1abbe30d3",
+      "path": "Minizip"
+    },
+    {
+      "commit": "b33debdac37d6ef3be955eebb0c42495a1f19232",
+      "path": "MixpanelService"
+    },
+    {
+      "commit": "45b4efd3ffee943832dbeb608b4cb4baeb53fb12",
+      "path": "NightscoutRemoteCGM"
+    },
+    {
+      "commit": "2cef4896f0704fb112575ab34b596ee7de78e48d",
+      "path": "NightscoutService"
+    },
+    {
+      "commit": "043b91dbf1958d26c55d927a6a8d651bc91f208d",
+      "path": "OmnipodKit"
+    },
+    {
+      "commit": "049f0d51b2fb90fa5180f3f62555d8c661b55968",
+      "path": "RileyLinkKit"
+    },
+    {
+      "commit": "99ac3544f8462973f6ea886d1a46c2954ad0cc0f",
+      "path": "TidepoolService"
+    },
+    {
+      "commit": "5dc1285f3ea85fed3d132fb226c969d6a06b1208",
+      "path": "TrueTime.swift"
+    },
+    {
+      "commit": "d78854b22b9567e7f30d748bdd4966c86bcc93a5",
+      "path": "TrueTime.swift/External/xcconfigs"
+    },
+    {
+      "commit": "ff0d71433447af3c93dac450d95c14b63f58f417",
+      "path": "dexcom-share-client-swift"
+    }
+  ],
+  "research_branch": "research/project-live"
+}

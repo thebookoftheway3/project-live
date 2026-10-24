@@ -1,0 +1,6 @@
+{"schema_version":1,"id":"e01","at":"2026-10-24T10:00:00Z","kind":"environment","source":"synthetic-occupancy","payload":{"name":"home","confidence":0.95},"synthetic":true}
+{"schema_version":1,"id":"e02","at":"2026-10-24T10:00:20Z","kind":"motion_feature","source":"synthetic-phone","payload":{"feature":"motion_phone_on_table"},"synthetic":true}
+{"schema_version":1,"id":"e03","at":"2026-10-24T10:00:24Z","kind":"audio_feature","source":"synthetic-audio","payload":{"feature":"audio_meal_speech"},"synthetic":true}
+{"schema_version":1,"id":"e04","at":"2026-10-24T10:00:27Z","kind":"vision_feature","source":"synthetic-room","payload":{"feature":"vision_table_eating"},"synthetic":true}
+{"schema_version":1,"id":"e05","at":"2026-10-24T10:00:30Z","kind":"glucose","source":"synthetic-cgm","payload":{"mmol_l":6.4,"trend":"stable"},"synthetic":true}
+{"schema_version":1,"id":"e06","at":"2026-10-24T10:10:30Z","kind":"environment","source":"synthetic-car","payload":{"name":"car","confidence":0.91},"synthetic":true}
