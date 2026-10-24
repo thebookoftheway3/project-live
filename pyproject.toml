@@ -7,3 +7,25 @@ license = {file = "LICENSE"}
 
 [tool.setuptools.packages.find]
 include = ["project_live*"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "S102", "S307"]
+
+[tool.coverage.run]
+branch = true
+source = ["project_live"]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = false
+
+[tool.rumdl.global]
+enable = ["MD051", "MD052", "MD057"]
+include = ["*.md", "docs/**/*.md", ".github/**/*.md"]
+
+[tool.rumdl.MD051]
+ignore-case = false

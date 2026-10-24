@@ -3,10 +3,13 @@
 Simple illustrative Bayes/log-odds calculation with **handchosen, uncalibrated**
 likelihood ratios. A real model requires measured evidence and calibration.
 """
+
 from __future__ import annotations
+
 from dataclasses import dataclass
-from math import log, exp
 from datetime import datetime, timedelta
+from math import exp, log
+
 from .events import Observation
 
 # Grouping prevents multiple correlated detections within the same family
@@ -19,12 +22,14 @@ EXAMPLE_LIKELIHOOD_RATIOS = {
     "motion_phone_on_table": ("motion", 1.5),
 }
 
+
 @dataclass(frozen=True)
 class Belief:
     label: str
     probability: float
     evidence: tuple[str, ...]
     status: str = "ILLUSTRATIVE_NOT_CALIBRATED"
+
 
 class MealContextEstimator:
     def __init__(self, prior: float = 0.12, evidence_ttl_seconds: int = 180):
@@ -56,4 +61,6 @@ class MealContextEstimator:
         for ratio, _ in by_group.values():
             log_odds += log(ratio)
         probability = 1 / (1 + exp(-log_odds))
-        return Belief("possible_meal", round(probability, 4), tuple(sorted(id for _, id in by_group.values())))
+        return Belief(
+            "possible_meal", round(probability, 4), tuple(sorted(id for _, id in by_group.values()))
+        )

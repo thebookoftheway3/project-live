@@ -37,6 +37,8 @@ python3 -m project_live.cli replay data/synthetic_example.jsonl
 
 CI runs the baseline on Python 3.11 and 3.12. Tests need no medical devices or personal records.
 
+See the [CI and assurance review](docs/assurance/CI_REVIEW.md) for automated gates, [executed verification evidence](docs/assurance/CI_VALIDATION.md), and the separate [administrator checklist](docs/security/CI_ADMIN_CHECKLIST.md). Passing checks remain bounded synthetic evidence.
+
 ## Repositories and contributions
 
 - [Project LIVE](https://github.com/thebookoftheway3/project-live): public design, sensing, shadow evaluation and synthetic tests.

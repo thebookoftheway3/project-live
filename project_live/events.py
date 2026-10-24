@@ -2,16 +2,27 @@
 
 This is an experimental data structure, not a medical-device interface.
 """
+
 from __future__ import annotations
+
 import json
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Mapping
 
-OBSERVATION_KINDS = frozenset({
-    "environment", "glucose", "pump_telemetry", "audio_feature", "vision_feature",
-    "motion_feature", "bolus_observed", "sleep_feature", "system_health"
-})
+OBSERVATION_KINDS = frozenset(
+    {
+        "environment",
+        "glucose",
+        "pump_telemetry",
+        "audio_feature",
+        "vision_feature",
+        "motion_feature",
+        "bolus_observed",
+        "sleep_feature",
+        "system_health",
+    }
+)
 
 
 def _validate_json_value(value: Any, ancestors: set[int]) -> None:
@@ -89,4 +100,6 @@ class Observation:
         if obj.get("synthetic") is not True:
             # Initial model deliberately rejects real patient data.
             raise ValueError("Prototype accepts synthetic data only")
-        return Observation(obj["id"], at.astimezone(timezone.utc), obj["kind"], obj["source"], obj["payload"], True)
+        return Observation(
+            obj["id"], at.astimezone(timezone.utc), obj["kind"], obj["source"], obj["payload"], True
+        )

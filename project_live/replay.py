@@ -1,11 +1,15 @@
 """Deterministic synthetic replay with a non-therapeutic advisory output."""
+
 from __future__ import annotations
+
 import json
 from pathlib import Path
-from .events import Observation
+
 from .context import MealContextEstimator
 from .environment import EnvironmentTracker
+from .events import Observation
 from .safety_boundary import NoPumpAccess
+
 
 def load_events(path: str | Path) -> list[Observation]:
     events = []
@@ -23,6 +27,7 @@ def load_events(path: str | Path) -> list[Observation]:
         seen.add(event.id)
     return sorted(events, key=lambda e: (e.at, e.id))
 
+
 def replay(path: str | Path) -> list[dict]:
     env = EnvironmentTracker()
     meals = MealContextEstimator()
@@ -33,14 +38,16 @@ def replay(path: str | Path) -> list[dict]:
         meals.observe(event)
         setting = env.state(event.at)
         belief = meals.estimate(event.at)
-        result.append({
-            "event_id": event.id,
-            "at": event.at.isoformat(),
-            "environment": setting.name,
-            "environment_verified": setting.verified,
-            "meal_probability_example_only": belief.probability,
-            "evidence": belief.evidence,
-            "support_action": "review_possible_meal" if belief.probability >= 0.65 else "none",
-            "pump_authorization": boundary.authorize("any_pump_action", setting.name).permitted,
-        })
+        result.append(
+            {
+                "event_id": event.id,
+                "at": event.at.isoformat(),
+                "environment": setting.name,
+                "environment_verified": setting.verified,
+                "meal_probability_example_only": belief.probability,
+                "evidence": belief.evidence,
+                "support_action": "review_possible_meal" if belief.probability >= 0.65 else "none",
+                "pump_authorization": boundary.authorize("any_pump_action", setting.name).permitted,
+            }
+        )
     return result
