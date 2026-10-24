@@ -6,7 +6,7 @@ Dependencies are engineering prerequisites, not a demand to finish a full framew
 
 | ID | Work / linked requirements | Priority | Status | Dependencies | Measurable acceptance criteria |
 | --- | --- | --- | --- | --- | --- |
-| LIVE-001 | Synthetic replay foundation — R10/R12 | Foundation | Implemented | None | Existing seven tests pass; deterministic replay denies pump actions |
+| LIVE-001 | Synthetic replay foundation — R10/R12 | Foundation | Implemented | None | Expanded 15-test suite passes with PR #5 payload regressions; deterministic replay denies pump actions |
 | LIVE-002 | Pin Loop workspace/dependencies | Foundation | Implemented | None | Exact recursive commit manifest and unchanged upstream baseline |
 | LIVE-003 | Unmodified Loop simulator baseline | P1 | Pending | LIVE-002 | Reproducible simulator build/test results and recorded toolchain; independent of first slice |
 | LIVE-004 | Generic source and temporal observation contracts — R08/R10/R22/R28 | P0 | Proposed in contracts | None | Explicit event/recording/ingestion/actual-availability/execution times, clock ordering, retention and permissions across fixtures; late arrivals cannot be backdated into an earlier cutoff |
