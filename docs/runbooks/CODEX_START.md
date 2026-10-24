@@ -1,6 +1,6 @@
 # Contributor setup
 
-Read the root `PROJECT_BLUEPRINT.md` (Revision 2), `docs/PROJECT_DIRECTION.md`, and `CONTRIBUTING.md`. The blueprint governs; the original starter supplied a synthetic replay foundation.
+Start with the root [AGENTS.md](../../AGENTS.md) and its required context, including the blueprint, direction, contributor workflow, governance, security, methodology and ADRs. The blueprint governs the research design; the original starter supplied a synthetic replay foundation. Root instructions follow [Codex's AGENTS.md discovery](https://learn.chatgpt.com/docs/agent-configuration/agents-md); they are behavioural guidance, not security enforcement.
 
 ```sh
 git clone https://github.com/thebookoftheway3/project-live.git

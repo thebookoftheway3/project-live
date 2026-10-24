@@ -1,0 +1,9 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+# No automatic merge. Review upstream provenance and preserve full commit SHA pins.
+# Add a Python ecosystem entry when dependencies/build tooling need tracked updates.

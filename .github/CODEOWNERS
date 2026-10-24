@@ -1,0 +1,20 @@
+# Only the currently verified repository owner is assigned.
+# This requests ownership review; it does not enforce approval or provide independence.
+# See docs/security/BASELINE.md before changing review enforcement.
+* @thebookoftheway3
+
+# Explicitly identify policy, automation and security boundaries for future delegation.
+/AGENTS.md @thebookoftheway3
+**/AGENTS.md @thebookoftheway3
+/.github/ @thebookoftheway3
+/GOVERNANCE.md @thebookoftheway3
+/SECURITY.md @thebookoftheway3
+/CODE_OF_CONDUCT.md @thebookoftheway3
+/CONTRIBUTING.md @thebookoftheway3
+/LICENSE @thebookoftheway3
+/THIRD_PARTY_NOTICES.md @thebookoftheway3
+/PROJECT_BLUEPRINT.md @thebookoftheway3
+/docs/ @thebookoftheway3
+/project_live/ @thebookoftheway3
+/tests/ @thebookoftheway3
+/pyproject.toml @thebookoftheway3
