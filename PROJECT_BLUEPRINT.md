@@ -1,8 +1,8 @@
 # Context-Aware Insulin System — Research & Design Blueprint
 
-**Public engineering specification | 24 October 2026 | Revision 2: explicit Bayesian belief-state architecture**
+**Public engineering specification | 24 October 2026 | Integration revision 3: virtual sensors, Bayesian inference and active historical investigation**
 
-Adapted from the supplied Revision 2 specification for public collaboration. Personal history and treatment details are omitted; the original is preserved locally and identified by hash in `docs/SOURCE_MANIFEST.json`. Technical requirements are retained. Subsequent explicit project direction adds a public, open-source mission and active information gathering as a confirmed requirement.
+Adapted from the supplied Revision 2 specification for public collaboration. Personal history and treatment details are omitted; the original is preserved locally and identified by hash in `docs/SOURCE_MANIFEST.json`. Technical requirements are retained. Subsequent explicit project direction adds a public, open-source mission and active information gathering as a confirmed requirement. This integration incorporates the General-Purpose Virtual Sensor Architecture and Progressive Bayesian Inference addendum while retaining the Revision 2 Bayesian foundation. The architecture/specification integrated through PR #2 includes Active Historical Investigation: investigating why predictions were wrong is a foundational capability. Neither extension authorizes live sensing or full implementation.
 
 **Status:** Open-source research for the benefit of people with diabetes. The first deliverable is a strictly non-actuating, read-only shadow system; it is not a validated treatment system. The insulin-focused initial scope does not establish suitability across every diabetes type, treatment, age group or device. Each person’s established treatment system operates independently.
 
@@ -40,6 +40,12 @@ Apply ideas from distributed real-time systems: sensing, estimation, changing op
 9. **Keep the experimental system unable to actuate insulin at first.** Independent physical and software boundaries matter more than an on-screen label saying “simulation.”
 10. **Test whether additional sensors add value.** More sensors are not inherently more intelligence; measure incremental predictive information, latency, availability and false-confidence risk.
 
+11. **The sensor is the question, not the hardware.** Any authorized relevant stream can support a testable, software-defined virtual sensor. Separate generic sensing infrastructure from the diabetes-specific physiological model.
+12. **Ask the next useful question.** Progress from cheap detection to selected advanced inference only when expected benefit justifies permissions, resource and attention costs. UNKNOWN and stopping are valid outcomes.
+13. **Compose interpretations without inventing evidence.** Preserve raw observations, derivation lineage, correlation and competing hypotheses through every virtual-sensor layer. New sensors extend the existing Bayesian belief state rather than establishing a competing authority.
+
+14. **Investigate the past without rewriting knowledge.** The next useful question may concern the present, future or past. A sensor invented today can reinterpret compatible retained data recorded yesterday. Preserve what the system knew then separately from what it understands now.
+
 ## 4. System boundary: two parallel worlds
 
 ### A. Active treatment system
@@ -57,39 +63,40 @@ Shadow output is labelled `SIMULATED / NOT DELIVERED`, separated from confirmed 
 ### Conceptual data flow
 
 ```text
-CGM A ───────────┐
-CGM B ───────────┤
-Confirmed pump ──┤
-Wearable ────────┤
-Home cameras ────┤──► Ingest / timestamp / provenance
-Home sensors ────┤             │
-Phone context ───┤             ▼
-Human notes ─────┘    Sensor quality & event reconciliation
-                              │
-                              ▼
-                  Bayesian belief-state estimator
-                  (latent state + modes + uncertainty)
-                      /         |          \
-              physiology    context     site/pump state
-                      \         |          /
-                              ▼
-                Predictions + uncertainty + explanations
-                              │
-                              ▼
-                  SHADOW decisions / virtual pump
-                              │
-                              ▼
-              Compare, replay, investigate, learn
+Authorized streams: measurements / time series / images / audio / events / logs
+                                  |
+Generic adapters -> cheap detection -> virtual-sensor evidence
+                                             |
+                                Bayesian joint belief state
+                                  /                     \
+                    shadow predictions               evidence gaps
+                                                           |
+                                                acquisition planner
+                                               /                  \
+                             fresh / retained / historical query    stop, retain unknown
+                                             |
+                           new traceable evidence or interpretation
 
-     HARD BOUNDARY: NO SHADOW OUTPUT → LIVE PUMP COMMANDS
+One planner queries a permission/retention-aware evidence index.
+One estimator preserves online snapshots and separate retrospective views.
 
-     Independently operating active clinical treatment system
-                    ─────► actual insulin delivery
+HARD BOUNDARY: NO EXPERIMENTAL OUTPUT -> LIVE PUMP COMMANDS
+Independent treatment continues outside this research pipeline.
 ```
+
+See the [architecture diagram and boundaries](docs/architecture/SYSTEM.md) and [proposed contracts](docs/architecture/VIRTUAL_SENSOR_CONTRACTS.md). These are logical components, initially suitable for one process; they do not require a fleet of services or a plugin ecosystem.
 
 ## 5. Proposed sensing and component inventory
 
-Items marked **core** are part of the intended observational architecture; **optional** means investigate usefulness and access before purchasing or implementing.
+### 5.0 General-purpose software-defined virtual sensors
+
+A physical sensor measures a signal; a virtual sensor answers a versioned question about evidence. Microphone audio may support questions about a can opening or acoustic reliability; video may support presence or container identification; power, door contacts and movement can support the same event through different evidence. Scalar measurements, time series, images, audio, logs, software events, CGM, pump history and other authorized streams share an ingestion/provenance framework.
+
+Virtual sensors may compose other virtual sensors while retaining their raw evidence leaves and alternative explanations. A higher-level beverage event remains an inference. Never count its supporting leaves again as independent evidence. Provider scores require explicit semantics and calibration status; missing data are not negative evidence.
+
+Each sensor declares identity/version, question, input requirements, permissions, temporal window/freshness, triggers, cheap/advanced alternatives, output schema, uncertainty semantics, provenance/dependencies, failure/OOD behavior, costs, expected value, escalation and stopping rules. Historical execution additionally requires compatible retained representations, current purpose authorization and versioned backfill results with actual execution/availability times. Begin with [small contracts and a static registry](docs/architecture/VIRTUAL_SENSOR_CONTRACTS.md), not a complex plugin framework.
+
+Items marked **core** below describe the intended diabetes research profile, not mandatory hardware built into the generic framework. Missing devices must remain supported explicitly; **optional** means investigate usefulness and access before purchasing or implementing. Reuse in traffic, buildings, industry or accessibility is architectural potential, not additional product commitments.
 
 ### 5.1 Glucose sensing — **core: two CGMs**
 
@@ -210,7 +217,10 @@ A model response should make its uncertainty auditable:
 
 ```text
 BeliefSnapshot:
+  snapshot_id / inference_kind / target_window
   inferred_at / evidence_cutoff / model_version
+  exact_evidence_manifest + actual_availability + sensor_versions
+  original_snapshot_ids + parent_snapshot_id + revision_reason
   observed_sources + freshness + quality + provenance
   posterior_state_summary + credible_intervals
   discrete_hypotheses_with_probabilities
@@ -235,9 +245,27 @@ Keep **prediction** separate from **counterfactual intervention**. If a human to
 
 ### 6.9 Active information gathering
 
-The system is responsible for recognising insufficient evidence and actively seeking useful additional sensor observations. Design acquisition around the expected reduction of relevant uncertainty, source availability, freshness, correlated errors, privacy, energy and attention costs. Record what was requested, what arrived, and whether it improved prospective predictions.
+The system is responsible for recognising insufficient evidence and actively seeking useful additional sensor observations. Cheap event detection produces initial evidence; update the Bayesian belief, identify a relevant gap, then select the next source, question or model tier only when worthwhile. The same planner compares fresh observations, deeper retained-data analysis, targeted historical retrieval, searches for similar episodes, retrospective execution of compatible virtual sensors and no action. A current mismatch may make a low-interest event from hours earlier newly relevant. Historical queries and follow-up inference spend the same privacy, permission, latency, compute and attention budgets as new acquisition.
+
+Evaluate information value against latency, compute/API costs, energy, bandwidth, freshness, source reliability, privacy and human attention. Hard authorization and resource limits precede ranking. Record the reason, requested evidence, predicted benefit, actual costs/outcome, belief revision and independently evaluated improvement. Expected information gain, observed entropy reduction and predictive correctness are different measurements.
+
+Stop when useful evidence is unavailable, not permitted, too costly or not expected to help. Permission revocation and provider failures must preserve unresolved uncertainty. Provider-neutral inference supports local algorithms, local ML, mocks and optional external services; the existing Bayesian estimator remains the single integrator. The [Decisions feasibility record](docs/research/DECISIONS_API.md) verifies capabilities before any adapter-specific schema or implementation. No cloud provider is foundational to this architecture.
 
 Human clarification is a possible architectural mechanism whose timing and interaction design remain open. An unanswered question is unknown, never a negative observation. Insufficient evidence must remain explicit when no useful observation can be obtained; acquisition does not grant treatment authority.
+
+### 6.10 Active Historical Investigation: filtering, smoothing and knowledge time
+
+**The past has not changed. Our understanding of the past has.** A prediction mismatch can trigger a bounded investigation of earlier camera, audio, wearable, activity, CGM or insulin-history evidence, including events initially classified as uninteresting. This is a core use of the existing acquisition planner and Bayesian estimator, not an optional analytics subsystem.
+
+Online filtering estimates the current state using evidence actually available and admitted at the time. Retrospective Bayesian smoothing estimates an earlier state using later available observations or interpretations. Retain both views as separate versioned snapshots. A later interpretation may also support a newly issued current estimate, but cannot replace an original forecast or change its evidence cutoff. The event-time shorthand in section 6.2 must be implemented with the availability-aware semantics in the [architecture](docs/architecture/SYSTEM.md#online-filtering-versus-retrospective-smoothing).
+
+Distinguish event time, recording time, ingestion time, actual object availability, inference execution/publication, target interval, model/question/sensor versions and the original forecast's evidence cutoff. Record exactly which evidence was used; an available but unexamined frame is not an already-known interpretation. A new sensor result inherits its actual availability time, never its old input's timestamp.
+
+A newly invented virtual sensor can backfill compatible retained data under current consent and purpose limits. Append interpretations and reproducible manifests, preserving earlier interpretations and original inputs while retention permits. New-model reanalysis is explicitly labelled; it is not evidence that the original model knew the same thing. The past/current views remain outputs of one belief architecture.
+
+Begin with a simple index over synthetic events and episode references. Queries filter time windows, actual availability, representation compatibility, permission and retention before retrieving or ranking results. Similar episodes nominate evidence rather than prove causes. No query assumes indefinite household audio/video storage, revives expired media or restores revoked consent. Missing history is missing evidence. If authorized erasure prevents exact replay, report incompleteness rather than fabricate the former view.
+
+Preserve lineage across original detections, later reinterpretations, episode matches and the mismatch that triggered the query. Do not count the same raw event or later glucose observation repeatedly. As-was evaluation excludes later interpretations, versions and similarity features; retrospective analysis declares its later cutoff and separate metrics. A retrospective explanation cannot establish causation or identify the outcome of an insulin intervention that never occurred.
 
 ## 7. Infusion site as a dynamic process, not an afterthought
 
@@ -269,9 +297,9 @@ Never equate `home=true` with `safe=true`. A home camera does not know everythin
 
 Safety-critical alarms and established protective functions must not be silently suppressed as part of an “alarm-free home” goal. Separate nuisance-alert reduction from medically necessary alerts.
 
-## 9. Camera-to-cola experiment: defining what must be inferred
+## 9. Multimodal beverage experiment: defining what must be inferred
 
-Use a familiar event as a demanding observational test:
+Use a familiar event as a demanding observational test. A camera is one possible source; audio, motion, a door contact, power readings and a scale may provide complementary evidence:
 
 1. A known beverage is taken from the fridge.
 2. The system identifies the likely beverage, including whether it contains sugar.
@@ -283,6 +311,8 @@ Use a familiar event as a demanding observational test:
 Research questions: Can recognition occur early enough to matter? What is the rate of false drink detections, mistaken regular/diet classification, inaccurate quantity estimates and missed events? Does the enriched history materially outperform a CGM-plus-insulin baseline? What happens when the user drinks somewhere without cameras?
 
 Do **not** infer “the camera knows exactly how much was drunk.” Do **not** assume a perfect flat glucose curve is physiologically possible with unannounced fast carbohydrates and subcutaneous insulin.
+
+The [first synthetic vertical slice](docs/design/SYNTHETIC_VIRTUAL_SENSOR_SLICE.md) is narrower: door event → cheap audio-feature detector → virtual sensor → selectively requested mock image inference → Bayesian update → synthetic weight evidence → auditable replay. It includes diet, no/partial consumption, another person, missing camera, contradiction, correlated repetition, timeout, no-value acquisition and confident-error cases. The same LIVE-022 slice includes a required historical phase: low-interest 12:30 activity, a scripted 14:30 prediction mismatch, selective historical retrieval and mock reinterpretation, then a retrospective posterior with both online snapshots frozen. Leakage, unavailable-history, correlated-evidence and consent/retention-denial checks are mandatory. It calculates no insulin doses and makes no live requests.
 
 ## 10. Shadow mode, calibration and learning together
 
@@ -302,12 +332,15 @@ Important methodological limits:
 - If the user starts adopting model suggestions, training data become policy-dependent; track this explicitly and avoid treating agreement as independent confirmation.
 - Use chronological holdouts, scenario replay and prospective pre-registered shadow predictions, not only retrospective fitting to past traces.
 - Maintain original inputs, predictions, model version and timestamps so that performance cannot be improved retroactively by leaking future information.
+- Record later smoothing and new-sensor reanalysis separately from original online snapshots. Later outcomes may score an original forecast, but must never enter its inputs; retrospectively improved explanations are not improved original predictions.
 
 The key target is **detectable wrongness**, not infallibility. Evaluate whether error signals arrive soon enough for a human or independently validated safety mechanism to respond.
 
 ## 11. Non-actuating software modules for Codex
 
-A suggested repository layout:
+The following is a future physiological-shadow layout from Revision 2, not a required refactor of the current Python starter. The generic source/virtual-sensor/provider/planner contracts are defined in the architecture documents and may initially live in one package. Do not create empty services or duplicate the Bayesian state API merely to match this sketch.
+
+A suggested future repository layout:
 
 ```text
 README.md
@@ -401,6 +434,7 @@ Measure:
 - False-alert frequency, missed important events, cumulative interruption time and attention burden.
 - Sleep disruption, practical effort, freedom to leave home, and (where relevant and consensually recorded) burden on family members.
 - Connectivity, on-device availability, power consumption, local processing latency, storage and privacy impact.
+- Progressive versus cheap-only and fixed-escalation policies: event precision/recall, calibration, false confidence, provider calls, cost, acquisition latency, resource use and downstream prediction quality. Separate measured costs from simulated or unavailable metrics. Preserve negative results.
 - Robustness to sensor outages, changing routines, unseen settings and infusion-site changes.
 
 A predicted smooth glucose curve is **not** a sufficient success criterion. Counterfactual safety, actual insulin effect and independent fault handling remain distinct evaluation problems.
@@ -424,16 +458,21 @@ Develop fault-injection tests with synthetic and de-identified data for:
 - Network disconnection, phone restart, wearable dropout, low battery, home-camera outage.
 - Privacy failure or sensor observations involving another person rather than the user.
 - A model that appears accurate on historical data but fails prospectively.
+- Historical retrieval admitting late-available interpretations, later-registered sensors or later episode features into an earlier knowledge cutoff.
+- Unavailable, incompatible, expired or consent-denied history; a later query must not invent evidence or bypass the original retention constraints.
+- Duplicate historical derivations and selective investigations that falsely reinforce the same explanation.
 
 These scenarios are for **non-actuating simulation and fault detection**, not instructions for modifying clinical dosing.
 
 ## 14. Implementation sequence
 
+These are the longer-term physiological research phases. The immediate delivery order is the [synthetic LIVE-022 milestone](docs/BACKLOG.md), in small reviewed increments; live acquisition and the Loop simulator track are not prerequisites. Progression beyond synthetic work requires separate permission and assurance review under the [methodology](docs/METHODOLOGY.md).
+
 **Phase 0 — Establish the boundary.** Document actual equipment, treatment controller, supported APIs, read-only acquisition, data rights, safety ownership and clinical compatibility. Set up a synthetic pump simulator. No code capable of live dosing.
 
 **Phase 1 — Reliable event history.** Ingest one CGM stream and confirmed insulin history, with accurate timestamps, provenance and replay. Then add the second CGM without merging away either original.
 
-**Phase 2 — Context instrumentation.** Add watch/phone activity and sleep, then local kitchen/drink events. Keep image inference independent of treatment and validate observation quality.
+**Phase 2 — Context instrumentation.** Begin with generic adapters, versioned virtual-sensor questions and the synthetic progressive-inference slice. Later add authorized watch/phone and home context through those contracts, guided by measured information value. Keep image/audio interpretation independent of treatment and validate observation quality.
 
 **Phase 3 — Bayesian belief-state estimator.** First implement a baseline forecaster with predictive intervals; then a documented Bayesian filtering prototype with explicit priors, state transitions, source likelihoods, posterior updates, competing discrete modes and posterior predictive checks. Compare accuracy *and calibration* against baseline. Treat site-response changes and CGM fault modes as separate, testable hypotheses. Keep the entire estimator read-only.
 
