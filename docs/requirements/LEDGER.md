@@ -1,6 +1,6 @@
 # Requirements ledger — virtual-sensor integration revision 3
 
-Source: the governing blueprint plus explicit project direction. PR #2 accepts R22–R30 as design requirements; their safeguards remain unimplemented and concrete API sketches remain proposed. Documentation acceptance is not implementation or validation.
+Source: the governing blueprint plus explicit project direction. PR #2 accepts R22–R30 as design requirements; general safeguards remain incomplete and concrete API sketches remain proposed. The [first LIVE-022 beverage increment](../assurance/LIVE022_INCREMENT.md) provides bounded synthetic implementation evidence only. Documentation acceptance is not implementation or validation.
 
 | ID | Requirement | Status | Required evidence |
 | --- | --- | --- | --- |

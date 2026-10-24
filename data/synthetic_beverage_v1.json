@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "fixture_id": "synthetic-beverage-v1",
+  "synthetic": true,
+  "policy": {
+    "max_calls": 1,
+    "min_benefit": 0.3,
+    "allow_image": true
+  },
+  "mock_outcome": "ok",
+  "samples": [
+    {
+      "id": "s0",
+      "kind": "door",
+      "value": "open",
+      "source": "synthetic-door",
+      "dependence_group": "door-event",
+      "synthetic": true,
+      "event_at": "2026-01-01T10:00:00Z",
+      "available_at": "2026-01-01T10:00:00Z",
+      "sequence": 0,
+      "permitted": true,
+      "retain_until": "2026-01-01T11:00:00Z"
+    },
+    {
+      "id": "s1",
+      "kind": "audio",
+      "value": "can_opening",
+      "source": "synthetic-mic",
+      "dependence_group": "opening-event",
+      "synthetic": true,
+      "event_at": "2026-01-01T10:00:01Z",
+      "available_at": "2026-01-01T10:00:01Z",
+      "sequence": 1,
+      "permitted": true,
+      "retain_until": "2026-01-01T11:00:00Z"
+    },
+    {
+      "id": "s2",
+      "kind": "frame",
+      "value": "synthetic-frame-regular",
+      "source": "synthetic-camera",
+      "dependence_group": "image-event",
+      "synthetic": true,
+      "event_at": "2026-01-01T10:00:02Z",
+      "available_at": "2026-01-01T10:00:02Z",
+      "sequence": 2,
+      "permitted": true,
+      "retain_until": "2026-01-01T11:00:00Z"
+    },
+    {
+      "id": "s3",
+      "kind": "scale",
+      "value": 350,
+      "source": "synthetic-scale",
+      "dependence_group": "weight-event",
+      "synthetic": true,
+      "event_at": "2026-01-01T10:00:03Z",
+      "available_at": "2026-01-01T10:00:03Z",
+      "sequence": 3,
+      "permitted": true,
+      "retain_until": "2026-01-01T11:00:00Z"
+    },
+    {
+      "id": "s4",
+      "kind": "scale",
+      "value": 250,
+      "source": "synthetic-scale",
+      "dependence_group": "weight-event",
+      "synthetic": true,
+      "event_at": "2026-01-01T10:00:04Z",
+      "available_at": "2026-01-01T10:00:04Z",
+      "sequence": 4,
+      "permitted": true,
+      "retain_until": "2026-01-01T11:00:00Z"
+    }
+  ],
+  "evaluation_only_truth": {
+    "identity": "regular",
+    "quantity": "partial",
+    "actor": "self"
+  }
+}
