@@ -1,8 +1,8 @@
 # Context-Aware Insulin System — Research & Design Blueprint
 
-**Public engineering specification | 24 October 2026 | Revision 2: explicit Bayesian belief-state architecture**
+**Public engineering specification | 24 October 2026 | Integration revision 3: Bayesian belief state, general-purpose virtual sensors and progressive inference**
 
-Adapted from the supplied Revision 2 specification for public collaboration. Personal history and treatment details are omitted; the original is preserved locally and identified by hash in `docs/SOURCE_MANIFEST.json`. Technical requirements are retained. Subsequent explicit project direction adds a public, open-source mission and active information gathering as a confirmed requirement.
+Adapted from the supplied Revision 2 specification for public collaboration. Personal history and treatment details are omitted; the original is preserved locally and identified by hash in `docs/SOURCE_MANIFEST.json`. Technical requirements are retained. Subsequent explicit project direction adds a public, open-source mission and active information gathering as a confirmed requirement. This integration incorporates the General-Purpose Virtual Sensor Architecture and Progressive Bayesian Inference addendum while retaining the Revision 2 Bayesian foundation. The addendum is an architecture/specification/backlog task, not an instruction to implement live sensing.
 
 **Status:** Open-source research for the benefit of people with diabetes. The first deliverable is a strictly non-actuating, read-only shadow system; it is not a validated treatment system. The insulin-focused initial scope does not establish suitability across every diabetes type, treatment, age group or device. Each person’s established treatment system operates independently.
 
@@ -40,6 +40,10 @@ Apply ideas from distributed real-time systems: sensing, estimation, changing op
 9. **Keep the experimental system unable to actuate insulin at first.** Independent physical and software boundaries matter more than an on-screen label saying “simulation.”
 10. **Test whether additional sensors add value.** More sensors are not inherently more intelligence; measure incremental predictive information, latency, availability and false-confidence risk.
 
+11. **The sensor is the question, not the hardware.** Any authorized relevant stream can support a testable, software-defined virtual sensor. Separate generic sensing infrastructure from the diabetes-specific physiological model.
+12. **Ask the next useful question.** Progress from cheap detection to selected advanced inference only when expected benefit justifies permissions, resource and attention costs. UNKNOWN and stopping are valid outcomes.
+13. **Compose interpretations without inventing evidence.** Preserve raw observations, derivation lineage, correlation and competing hypotheses through every virtual-sensor layer. New sensors extend the existing Bayesian belief state rather than establishing a competing authority.
+
 ## 4. System boundary: two parallel worlds
 
 ### A. Active treatment system
@@ -57,39 +61,37 @@ Shadow output is labelled `SIMULATED / NOT DELIVERED`, separated from confirmed 
 ### Conceptual data flow
 
 ```text
-CGM A ───────────┐
-CGM B ───────────┤
-Confirmed pump ──┤
-Wearable ────────┤
-Home cameras ────┤──► Ingest / timestamp / provenance
-Home sensors ────┤             │
-Phone context ───┤             ▼
-Human notes ─────┘    Sensor quality & event reconciliation
-                              │
-                              ▼
-                  Bayesian belief-state estimator
-                  (latent state + modes + uncertainty)
-                      /         |          \
-              physiology    context     site/pump state
-                      \         |          /
-                              ▼
-                Predictions + uncertainty + explanations
-                              │
-                              ▼
-                  SHADOW decisions / virtual pump
-                              │
-                              ▼
-              Compare, replay, investigate, learn
+Authorized streams: measurements / time series / images / audio / events / logs
+                                  |
+Generic adapters -> cheap detection -> virtual-sensor evidence
+                                             |
+                                Bayesian joint belief state
+                                  /                     \
+                    shadow predictions               evidence gaps
+                                                           |
+                                                acquisition planner
+                                               /                  \
+                             next useful source/question/model    stop, retain unknown
+                                             |
+                                  new traceable evidence
 
-     HARD BOUNDARY: NO SHADOW OUTPUT → LIVE PUMP COMMANDS
-
-     Independently operating active clinical treatment system
-                    ─────► actual insulin delivery
+HARD BOUNDARY: NO EXPERIMENTAL OUTPUT -> LIVE PUMP COMMANDS
+Independent treatment continues outside this research pipeline.
 ```
+
+See the [architecture diagram and boundaries](docs/architecture/SYSTEM.md) and [proposed contracts](docs/architecture/VIRTUAL_SENSOR_CONTRACTS.md). These are logical components, initially suitable for one process; they do not require a fleet of services or a plugin ecosystem.
 
 ## 5. Proposed sensing and component inventory
 
-Items marked **core** are part of the intended observational architecture; **optional** means investigate usefulness and access before purchasing or implementing.
+### 5.0 General-purpose software-defined virtual sensors
+
+A physical sensor measures a signal; a virtual sensor answers a versioned question about evidence. Microphone audio may support questions about a can opening or acoustic reliability; video may support presence or container identification; power, door contacts and movement can support the same event through different evidence. Scalar measurements, time series, images, audio, logs, software events, CGM, pump history and other authorized streams share an ingestion/provenance framework.
+
+Virtual sensors may compose other virtual sensors while retaining their raw evidence leaves and alternative explanations. A higher-level beverage event remains an inference. Never count its supporting leaves again as independent evidence. Provider scores require explicit semantics and calibration status; missing data are not negative evidence.
+
+Each sensor declares identity/version, question, input requirements, permissions, temporal window/freshness, triggers, cheap/advanced alternatives, output schema, uncertainty semantics, provenance/dependencies, failure/OOD behavior, costs, expected value, escalation and stopping rules. Begin with [small contracts and a static registry](docs/architecture/VIRTUAL_SENSOR_CONTRACTS.md), not a complex plugin framework.
+
+Items marked **core** below describe the intended diabetes research profile, not mandatory hardware built into the generic framework. Missing devices must remain supported explicitly; **optional** means investigate usefulness and access before purchasing or implementing. Reuse in traffic, buildings, industry or accessibility is architectural potential, not additional product commitments.
 
 ### 5.1 Glucose sensing — **core: two CGMs**
 
@@ -235,7 +237,11 @@ Keep **prediction** separate from **counterfactual intervention**. If a human to
 
 ### 6.9 Active information gathering
 
-The system is responsible for recognising insufficient evidence and actively seeking useful additional sensor observations. Design acquisition around the expected reduction of relevant uncertainty, source availability, freshness, correlated errors, privacy, energy and attention costs. Record what was requested, what arrived, and whether it improved prospective predictions.
+The system is responsible for recognising insufficient evidence and actively seeking useful additional sensor observations. Cheap event detection produces initial evidence; update the Bayesian belief, identify a relevant gap, then select the next source, question or model tier only when worthwhile. Acquisition may request a fresh sample, selected frame, bounded audio analysis, another modality, or a new interpretation of already collected evidence.
+
+Evaluate information value against latency, compute/API costs, energy, bandwidth, freshness, source reliability, privacy and human attention. Hard authorization and resource limits precede ranking. Record the reason, requested evidence, predicted benefit, actual costs/outcome, belief revision and independently evaluated improvement. Expected information gain, observed entropy reduction and predictive correctness are different measurements.
+
+Stop when useful evidence is unavailable, not permitted, too costly or not expected to help. Permission revocation and provider failures must preserve unresolved uncertainty. Provider-neutral inference supports local algorithms, local ML, mocks and optional external services; the existing Bayesian estimator remains the single integrator. The [Decisions feasibility record](docs/research/DECISIONS_API.md) verifies capabilities before any adapter-specific schema or implementation. No cloud provider is foundational to this architecture.
 
 Human clarification is a possible architectural mechanism whose timing and interaction design remain open. An unanswered question is unknown, never a negative observation. Insufficient evidence must remain explicit when no useful observation can be obtained; acquisition does not grant treatment authority.
 
@@ -269,9 +275,9 @@ Never equate `home=true` with `safe=true`. A home camera does not know everythin
 
 Safety-critical alarms and established protective functions must not be silently suppressed as part of an “alarm-free home” goal. Separate nuisance-alert reduction from medically necessary alerts.
 
-## 9. Camera-to-cola experiment: defining what must be inferred
+## 9. Multimodal beverage experiment: defining what must be inferred
 
-Use a familiar event as a demanding observational test:
+Use a familiar event as a demanding observational test. A camera is one possible source; audio, motion, a door contact, power readings and a scale may provide complementary evidence:
 
 1. A known beverage is taken from the fridge.
 2. The system identifies the likely beverage, including whether it contains sugar.
@@ -283,6 +289,8 @@ Use a familiar event as a demanding observational test:
 Research questions: Can recognition occur early enough to matter? What is the rate of false drink detections, mistaken regular/diet classification, inaccurate quantity estimates and missed events? Does the enriched history materially outperform a CGM-plus-insulin baseline? What happens when the user drinks somewhere without cameras?
 
 Do **not** infer “the camera knows exactly how much was drunk.” Do **not** assume a perfect flat glucose curve is physiologically possible with unannounced fast carbohydrates and subcutaneous insulin.
+
+The [first synthetic vertical slice](docs/design/SYNTHETIC_VIRTUAL_SENSOR_SLICE.md) is narrower: door event → cheap audio-feature detector → virtual sensor → selectively requested mock image inference → Bayesian update → synthetic weight evidence → auditable replay. It includes diet, no/partial consumption, another person, missing camera, contradiction, correlated repetition, timeout, no-value acquisition and confident-error cases. It calculates no insulin doses and makes no live requests.
 
 ## 10. Shadow mode, calibration and learning together
 
@@ -307,7 +315,9 @@ The key target is **detectable wrongness**, not infallibility. Evaluate whether 
 
 ## 11. Non-actuating software modules for Codex
 
-A suggested repository layout:
+The following is a future physiological-shadow layout from Revision 2, not a required refactor of the current Python starter. The generic source/virtual-sensor/provider/planner contracts are defined in the architecture documents and may initially live in one package. Do not create empty services or duplicate the Bayesian state API merely to match this sketch.
+
+A suggested future repository layout:
 
 ```text
 README.md
@@ -401,6 +411,7 @@ Measure:
 - False-alert frequency, missed important events, cumulative interruption time and attention burden.
 - Sleep disruption, practical effort, freedom to leave home, and (where relevant and consensually recorded) burden on family members.
 - Connectivity, on-device availability, power consumption, local processing latency, storage and privacy impact.
+- Progressive versus cheap-only and fixed-escalation policies: event precision/recall, calibration, false confidence, provider calls, cost, acquisition latency, resource use and downstream prediction quality. Separate measured costs from simulated or unavailable metrics. Preserve negative results.
 - Robustness to sensor outages, changing routines, unseen settings and infusion-site changes.
 
 A predicted smooth glucose curve is **not** a sufficient success criterion. Counterfactual safety, actual insulin effect and independent fault handling remain distinct evaluation problems.
@@ -433,7 +444,7 @@ These scenarios are for **non-actuating simulation and fault detection**, not in
 
 **Phase 1 — Reliable event history.** Ingest one CGM stream and confirmed insulin history, with accurate timestamps, provenance and replay. Then add the second CGM without merging away either original.
 
-**Phase 2 — Context instrumentation.** Add watch/phone activity and sleep, then local kitchen/drink events. Keep image inference independent of treatment and validate observation quality.
+**Phase 2 — Context instrumentation.** Begin with generic adapters, versioned virtual-sensor questions and the synthetic progressive-inference slice. Later add authorized watch/phone and home context through those contracts, guided by measured information value. Keep image/audio interpretation independent of treatment and validate observation quality.
 
 **Phase 3 — Bayesian belief-state estimator.** First implement a baseline forecaster with predictive intervals; then a documented Bayesian filtering prototype with explicit priors, state transitions, source likelihoods, posterior updates, competing discrete modes and posterior predictive checks. Compare accuracy *and calibration* against baseline. Treat site-response changes and CGM fault modes as separate, testable hypotheses. Keep the entire estimator read-only.
 
