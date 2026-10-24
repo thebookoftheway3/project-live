@@ -15,13 +15,19 @@ The project direction is public open-source research for people with diabetes. R
 
 - Seven baseline unit tests passed locally on Python 3.12.14.
 - Synthetic replay produced six records, all with pump authorization denied.
-- Earlier bootstrap CI passed on Python 3.11 and 3.12. Public-history checks must be verified separately.
+- Public root commit `99199a173fddb2b84fd9e25833c538a9d12eec63` passed CI on Python 3.11 and 3.12: https://github.com/thebookoftheway3/project-live/actions/runs/40099087438 .
 - Xcode 26.4.1 (17E202) and Swift 6.3.1 were detected. A successful simulator build is still pending.
 - Python 3.11 or later is required. Contributors should select an appropriate runtime rather than assuming the system Python meets the requirement.
 
-## Remaining evidence
+## Repository controls verified
 
-- Verify CI and branch protection on the new public history.
+- Repository is public and GitHub detects the MIT license.
+- Main requires pull requests and passing `Python 3.11` and `Python 3.12` checks against an up-to-date branch.
+- Protection applies to administrators; force pushes and branch deletion are disabled. Conversations must be resolved.
+- Independent approval count is currently zero. This enforces PRs and CI, not independent human review; establish reviewer ownership as contributors join.
+- The original private bootstrap is archived and remains private. Public main has no ancestors from that history.
+
+## Remaining evidence
 - Establish an unmodified Loop simulator build/test baseline.
 - Review individual upstream component licenses before redistribution or changes.
 - Live sensor acquisition, glucose forecasting, Bayesian filtering, active acquisition and product prompting are not yet implemented.
