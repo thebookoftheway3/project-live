@@ -62,3 +62,7 @@ Use [OpenSSF Scorecard](https://scorecard.dev/) for a later measured configurati
 ## Reproduction and validation
 
 Read-only checks use `gh api repos/thebookoftheway3/project-live/<endpoint>` for the endpoints above. Do not paste credentials or sensitive alert responses into public evidence. Repository snapshot and recommendations are separate from local check results in [VALIDATION.md](VALIDATION.md). No administrative PUT/PATCH/POST/DELETE was performed for this audit.
+
+## Integration follow-up — 24 October 2026
+
+After governance integration, main contains CODEOWNERS and the weekly Actions version-update configuration. `codeowners/errors` returned an empty errors list; this verifies syntax, not independent review. Dependabot has generated Actions update branches; they require separate review and are outside the #3/#4/#2/#5 integration. These version updates do not enable vulnerability alerts or security updates. Rechecked private reporting remains disabled, secret scanning/push protection and Dependabot security updates remain disabled, CodeQL default setup is not configured, all Actions remain allowed without enforced SHA pins, and fork approval remains `first_time_contributors`. Read-only default tokens, disabled Actions PR approvals and the sole verified administrator are unchanged. No administrator setting was modified. Original snapshot findings and unverified account/App controls above remain dated evidence.

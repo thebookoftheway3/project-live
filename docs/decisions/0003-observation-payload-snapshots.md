@@ -1,9 +1,10 @@
 # ADR 0003: Snapshot Observation payloads as JSON values
 
-- Status: **Proposed implementation decision**, implemented in this PR for review; no automatic acceptance.
+- Status: **Accepted for the scoped synthetic payload safeguard, effective on PR #5 merge**.
+- Decision authority: Project owner / current maintainer, through the explicit integration instruction of 2026-10-24; review was Codex-assisted, with no independent human approval.
 - Date: 2026-10-24. Scope: synthetic Observation payload ownership; main R10/R19.
 - Related: [PR #4 C-02/H-02/S-02/V-02 and E02 counterexample](https://github.com/thebookoftheway3/project-live/blob/932b258c524cf14f05b62a439d57508e9643fa48/docs/assurance/CLAIMS_MATRIX.md). This is an evidence addendum, not a copy of that matrix.
-- ADR 0001 and 0002 in PRs #3/#4 remain proposed. This local decision does not accept either PR or extend the virtual-sensor contract.
+- Related accepted decisions: [ADR 0001](0001-modular-monolith-first.md) and [ADR 0002](0002-lightweight-assurance-traceability.md). This decision implements a scoped ownership safeguard; it does not implement the future virtual-sensor contract.
 
 ## Problem and alternatives
 
@@ -39,7 +40,7 @@ This is an ownership safeguard for ordinary Python API access, not a sandbox. Ho
 | Evidence E04 | At regression-only commit `33c41fa`, two tests produced **four failing subtests** on Python 3.12.14. After the safeguard, all **15 tests** (7 existing + 8 new) pass locally on Python 3.12.14. Remote supported-version results are recorded in the implementation PR. |
 | Scope/review | Limited software evidence for C-02/H-02/S-02/V-02 under the cases above; independent human review pending. E02 remains a valid historical counterexample at its old revision. Other C-02 storage/transform safeguards remain unverified. |
 
-Reverse trace: E04 → V-02 → S-02 → H-02 → C-02 → R10/R19. The regression names and this record identify the forward path back to evidence. After PR #4 merges, its matrix should link this addendum and scope E02 as historical rather than erase it; no other claim becomes supported by this fix. Evidence is tied to the implementation PR revision and must be reconsidered when payload construction/access, accepted types, serialization or consumers change.
+Reverse trace: E04 → V-02 → S-02 → H-02 → C-02 → R10/R19. The regression names and this record identify the forward path back to evidence. The integrated [claims matrix](../assurance/CLAIMS_MATRIX.md) links this addendum and retains E02 as historical; no other claim becomes supported by this fix. Evidence is tied to the implementation PR revision and must be reconsidered when payload construction/access, accepted types, serialization or consumers change.
 
 Validation commands (Python 3.11/3.12 are the CI-supported matrix):
 
@@ -52,4 +53,10 @@ git diff --check
 
 The bundled local interpreter was Python 3.12.14. The original and fixed replay outputs are byte-identical after `json.dumps(replay(...), sort_keys=True, separators=(',', ':'))`: SHA-256 `50b6cec3972c03832aea38c69a22c3cdee33d94f16eab6407c0b0197c19ed8ca`; all six records deny pump authorization. The existing deterministic replay test remains unchanged. This evidence does not establish clinical safety or future-information leakage prevention.
 
-Accept or revise this implementation decision during PR review. Revisit if measured payload size/read frequency makes decoding costly or a new payload type is justified; retain the regression and explicit value/ownership contract in any replacement.
+The owner-authorized integration accepts the bounded safeguard after diff review and successful required checks; no separate independent approval is claimed. Revisit if measured payload size/read frequency makes decoding costly or a new payload type is justified; retain the regression and explicit value/ownership contract in any replacement.
+
+## Integration evidence — 24 October 2026
+
+Updated against main `a243867` after PRs #3, #4 and #2. Merge commits retain regression-only `33c41fa` and safeguard `5dec906` without rewriting or squashing them. A fresh isolated extraction of the regression-only revision again produced two tests with four failing subtests on Python 3.12.14; the integrated branch passes all 15 tests. Runtime tree `e398586eac1e7e0f44dc52059336d994a7d45945`, test tree `c6cbbbdfcfd981fc3787c557a29b2a2af7268f78` and fixture tree `c341b599736322f8d5deded4a8b3c1ddc0416da0` are identical to `5dec906`. Its [Python 3.11/3.12 evidence](https://github.com/thebookoftheway3/project-live/actions/runs/40118084733) remains applicable to those artifacts; required CI is also rerun on this integration revision before merge. Replay retains the recorded digest above.
+
+The C-02 forward/reverse links made the counterexample, safeguard and bounded tests reviewable without adding a framework. The integration exposed stale proposal/status references, now reconciled; upkeep time was not measured, and independent assurance remains absent. Reassess method cost during LIVE-022 rather than expanding the matrix for every trivial edit.

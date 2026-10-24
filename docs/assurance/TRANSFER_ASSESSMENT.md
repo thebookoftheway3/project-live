@@ -6,7 +6,7 @@ Read with the [traceability method](TRACEABILITY.md), [initial matrix](CLAIMS_MA
 
 ## Integration status — 24 October 2026
 
-PR #3 has merged as `4ab8501`, accepting the initial structure preference in ADR 0001. PR #4 adopts only the lightweight method through ADR 0002, links it into METHODOLOGY and the ADR register, and leaves the graph, semantic-transition design, provider isolation and future studies unapproved. PR #2 integrates its design requirements with methodology/assurance links; concrete API decisions and LIVE-022 implementation remain pending. The baseline table and assessment below preserve the pre-integration evidence and proposal states; they are historical context, not current merge status. The original source restrictions remain unchanged.
+PR #3 has merged as `4ab8501`, accepting the initial structure preference in ADR 0001. PR #4 adopts only the lightweight method through ADR 0002, links it into METHODOLOGY and the ADR register, and leaves the graph, semantic-transition design, provider isolation and future studies unapproved. PR #2 integrates its design requirements with methodology/assurance links; concrete API decisions and LIVE-022 implementation remain pending. The baseline table and assessment below preserve the pre-integration evidence and proposal states; they are historical context, not current merge status. PR #5 supplies the scoped Observation ownership safeguard and [E04 evidence](../decisions/0003-observation-payload-snapshots.md); the historical E02 counterexample remains intact. The original source restrictions remain unchanged.
 
 ## Source handling and decision baseline
 
@@ -104,7 +104,7 @@ The original main-based assessment left PR #3 files unchanged. Integration now a
 ## Decisions requiring further review
 
 1. Evaluate the accepted ADR 0002 trial after the first implementation; decide evidence sufficiency per scoped claim and measure upkeep. No independent human review has occurred.
-2. Resolve semantic confirmation/authority rules and payload immutability through focused contract work, coordinated with PR #2.
+2. Resolve semantic confirmation/authority rules and future storage/transform immutability through focused contract work. PR #5 addresses only the current Observation payload ownership gap.
 3. Define executable-plugin isolation and permission/retention enforcement before any untrusted worker or live data integration.
 4. Define prospective evaluation, human-visible output safeguards and escalation evidence for a particular future study; no study is authorized here.
 5. Reconcile contract references after PR #2 and payload evidence after PR #5. ADRs 0001/0002 have explicit integration decisions; this assessment selects no transport or scheduler.

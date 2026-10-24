@@ -14,7 +14,7 @@ Source: the governing blueprint plus explicit project direction. PR #2 accepts R
 | R07 | Treatment remains independent of experimental infrastructure | Architectural requirement | Dependency and failure analysis |
 | R08 | Progressive, replaceable sensor integrations independent of hardware modality | Initial schema only | Add a sensor on an existing representation without rewriting the belief core; explicit missing-device behavior |
 | R09 | Read-only CGM acquisition | Not implemented | Supported interfaces, time quality and non-interference |
-| R10 | Distinguish observations, beliefs, actions and outcomes | Partial replay; temporal design not implemented | Versioned schemas; event/recording/ingestion/actual-availability/execution times; immutable original cutoffs and exact admitted manifests |
+| R10 | Distinguish observations, beliefs, actions and outcomes | Partial replay and Observation payload isolation (E04); temporal design not implemented | Versioned schemas; event/recording/ingestion/actual-availability/execution times; immutable original cutoffs and exact admitted manifests |
 | R11 | Distinguish command intent, delivery and uncertain effect | Design pending | Confirmed action semantics and ambiguity tests |
 | R12 | Initial software cannot actuate insulin | Synthetic implementation | No real pump client or credentials; boundary tests |
 | R13 | Select the next useful fresh or historical investigation | Confirmed foundational requirement; design extended | One policy ranks fresh samples, retained-data analysis, historical and similar-episode queries, historical sensor runs and stop under shared budgets/permissions; log mismatch trigger, rationale, cost and changed understanding |
