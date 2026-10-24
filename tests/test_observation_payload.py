@@ -1,4 +1,5 @@
 """Value-snapshot regressions for synthetic observations."""
+
 import copy
 import json
 import tempfile
@@ -10,26 +11,33 @@ from pathlib import Path
 from project_live.events import Observation
 from project_live.replay import load_events
 
-
 NOW = datetime(2026, 10, 24, 10, tzinfo=timezone.utc)
 
 
 def observation(payload, *, direct=False):
     if direct:
         return Observation("sample", NOW, "vision_feature", "synthetic", payload, True)
-    return Observation.parse({
-        "schema_version": 1, "id": "sample", "at": NOW.isoformat(),
-        "kind": "vision_feature", "source": "synthetic",
-        "payload": payload, "synthetic": True,
-    })
+    return Observation.parse(
+        {
+            "schema_version": 1,
+            "id": "sample",
+            "at": NOW.isoformat(),
+            "kind": "vision_feature",
+            "source": "synthetic",
+            "payload": payload,
+            "synthetic": True,
+        }
+    )
 
 
 class ObservationPayloadTests(unittest.TestCase):
     def test_external_references_cannot_change_observation(self):
         for direct in (False, True):
             with self.subTest(direct=direct):
-                payload = {"feature": "vision_table_eating",
-                           "details": {"samples": [{"value": 1}, [2, 3]]}}
+                payload = {
+                    "feature": "vision_table_eating",
+                    "details": {"samples": [{"value": 1}, [2, 3]]},
+                }
                 expected = copy.deepcopy(payload)
                 event = observation(payload, direct=direct)
                 payload["feature"] = "vision_food_preparation"
@@ -50,8 +58,10 @@ class ObservationPayloadTests(unittest.TestCase):
                 self.assertEqual(event.payload, expected)
 
     def test_json_values_order_and_serialization_are_preserved(self):
-        payload = {"z": [None, True, False, 42, -7, 1.5, -0.0, "café", {}, []],
-                   "a": {"second": [1, {"first": "value"}]}}
+        payload = {
+            "z": [None, True, False, 42, -7, 1.5, -0.0, "café", {}, []],
+            "a": {"second": [1, {"first": "value"}]},
+        }
         for direct in (False, True):
             with self.subTest(direct=direct):
                 event = observation(payload, direct=direct)
@@ -75,13 +85,15 @@ class ObservationPayloadTests(unittest.TestCase):
         self.assertEqual(first, replace(first))
         self.assertEqual(first, copy.copy(first))
         self.assertEqual(first, copy.deepcopy(first))
-        self.assertEqual([f.name for f in fields(first)],
-                         ["id", "at", "kind", "source", "payload", "synthetic"])
+        self.assertEqual(
+            [f.name for f in fields(first)], ["id", "at", "kind", "source", "payload", "synthetic"]
+        )
         with self.assertRaises(FrozenInstanceError):
             first.payload = {}
         with self.assertRaises(TypeError):
-            Observation(id="sample", at=NOW, kind="vision_feature",
-                        source="synthetic", synthetic=True)
+            Observation(
+                id="sample", at=NOW, kind="vision_feature", source="synthetic", synthetic=True
+            )
 
     def test_shared_nested_containers_are_values_not_live_aliases(self):
         shared = [{"value": 1}]
@@ -90,8 +102,7 @@ class ObservationPayloadTests(unittest.TestCase):
         returned = event.payload
         returned["left"][0]["value"] = 3
         self.assertEqual(returned["right"], [{"value": 1}])
-        self.assertEqual(event.payload, {"left": [{"value": 1}],
-                                        "right": [{"value": 1}]})
+        self.assertEqual(event.payload, {"left": [{"value": 1}], "right": [{"value": 1}]})
 
     def test_unsupported_values_and_keys_are_rejected_at_both_entry_points(self):
         class CustomDict(dict):
@@ -107,12 +118,19 @@ class ObservationPayloadTests(unittest.TestCase):
             pass
 
         invalid = [
-            {"nested": [set([1])]}, {"nested": [bytearray(b"a")]},
-            {"nested": [b"a"]}, {"nested": [(1, 2)]},
-            {"nested": [object()]}, {"nested": [{1: "coercion forbidden"}]},
-            {"nested": [CustomDict()]}, {"nested": [CustomList()]},
-            {"nested": [CustomInt(1)]}, {"nested": [CustomString("value")]},
-            CustomDict(), [], None,
+            {"nested": [set([1])]},
+            {"nested": [bytearray(b"a")]},
+            {"nested": [b"a"]},
+            {"nested": [(1, 2)]},
+            {"nested": [object()]},
+            {"nested": [{1: "coercion forbidden"}]},
+            {"nested": [CustomDict()]},
+            {"nested": [CustomList()]},
+            {"nested": [CustomInt(1)]},
+            {"nested": [CustomString("value")]},
+            CustomDict(),
+            [],
+            None,
             *({"nested": [number]} for number in (float("nan"), float("inf"), -float("inf"))),
         ]
         for direct in (False, True):

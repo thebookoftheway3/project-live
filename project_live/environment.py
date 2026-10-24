@@ -2,12 +2,16 @@
 
 The environment is NOT used to grant authority to dose insulin.
 """
+
 from __future__ import annotations
+
 from dataclasses import dataclass
 from datetime import datetime, timedelta
+
 from .events import Observation
 
 ENVIRONMENTS = frozenset({"home", "office", "car", "mobile"})
+
 
 @dataclass(frozen=True)
 class EnvironmentState:
@@ -15,6 +19,7 @@ class EnvironmentState:
     confidence: float
     verified: bool
     reason: str
+
 
 class EnvironmentTracker:
     def __init__(self, ttl_seconds: int = 300, min_confidence: float = 0.80):
