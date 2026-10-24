@@ -57,3 +57,5 @@ Original Project LIVE code and documentation are provided under the [MIT License
 Open source means shared software and methods. Health records, raw recordings, identifiers, credentials and signing material stay outside version control. The initial research runtime cannot command a pump.
 
 Engineering methodology and evidence: [safety methodology transfer assessment and evidence traceability](docs/assurance/TRANSFER_ASSESSMENT.md). This assessment does not establish clinical validation or authorize actuation.
+
+Run the next bounded historical increment with `python3 -m project_live.cli history data/synthetic_history_v1.json`. It preserves online snapshots and emits a separate retrospective view; [executed evidence and remaining gaps](docs/assurance/LIVE022_HISTORY.md).

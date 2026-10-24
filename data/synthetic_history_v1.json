@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "target_at": "2026-10-24T12:30:00+02:00",
+  "online_at": "2026-10-24T12:30:02+02:00",
+  "mismatch_at": "2026-10-24T14:30:00+02:00",
+  "query_at": "2026-10-24T14:30:06+02:00",
+  "execute_at": "2026-10-24T14:30:10+02:00",
+  "smooth_at": "2026-10-24T14:31:00+02:00",
+  "sensor_available_at": "2026-10-24T12:00:00+02:00",
+  "window_start": "2026-10-24T12:00:00+02:00",
+  "window_end": "2026-10-24T13:00:00+02:00",
+  "scripted_forecast": {
+    "id": "synthetic-forecast-v1",
+    "issued_at": "2026-10-24T12:30:02+02:00",
+    "expected": "stable"
+  },
+  "policy": {
+    "max_calls": 1,
+    "min_benefit": 0.3,
+    "allow_image": true
+  },
+  "trigger_samples": [
+    {
+      "id": "door",
+      "kind": "door",
+      "source": "synthetic-door",
+      "value": "open",
+      "event_at": "2026-10-24T12:30:00+02:00",
+      "available_at": "2026-10-24T12:30:00+02:00",
+      "sequence": 0,
+      "permitted": true,
+      "retain_until": "2026-10-24T16:00:00+02:00",
+      "dependence_group": "door",
+      "synthetic": true
+    },
+    {
+      "id": "audio",
+      "kind": "audio",
+      "source": "synthetic-mic",
+      "value": "can_opening",
+      "event_at": "2026-10-24T12:30:01+02:00",
+      "available_at": "2026-10-24T12:30:01+02:00",
+      "sequence": 1,
+      "permitted": true,
+      "retain_until": "2026-10-24T16:00:00+02:00",
+      "dependence_group": "audio",
+      "synthetic": true
+    }
+  ],
+  "retained_frames": [
+    {
+      "sample": {
+        "id": "frame",
+        "kind": "frame",
+        "source": "synthetic-camera",
+        "value": "synthetic-frame-regular",
+        "event_at": "2026-10-24T12:30:01+02:00",
+        "available_at": "2026-10-24T12:30:01+02:00",
+        "sequence": 2,
+        "permitted": true,
+        "retain_until": "2026-10-24T16:00:00+02:00",
+        "dependence_group": "frame",
+        "synthetic": true
+      },
+      "representation": "inert-frame-v1",
+      "payload_present": true
+    }
+  ],
+  "evaluation_only_truth": {
+    "identity": "regular",
+    "actor": "self",
+    "explanation": "earlier_beverage"
+  }
+}

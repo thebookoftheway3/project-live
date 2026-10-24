@@ -6,6 +6,7 @@ dependency probe queries public advisory metadata without installing vulnerable 
 
 import argparse
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -17,8 +18,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def rejects(directory, command, diagnostic):
+    # Repeated same-size mutations within one second must not reuse stale bytecode.
     result = subprocess.run(
         command,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
         cwd=directory,
         text=True,
         stdout=subprocess.PIPE,
@@ -217,6 +220,39 @@ def offline_controls():
             "PermissionError not raised",
         ),
     ]
+    history_command = [
+        sys.executable,
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_history.py",
+    ]
+    for old, new, diagnostic in (
+        (
+            "if item.available_at > cutoff:",
+            "if False:",
+            "test_evidence_availability_duplicates_and_shared_leaves",
+        ),
+        (
+            "if sample.available_at > as_of:",
+            "if False:",
+            "test_direct_retrieval_filters_asof_before_ranking",
+        ),
+        (
+            "elif not frame.payload_present:",
+            "elif False:",
+            "test_current_permissions_retention_and_missing_payload_fail_closed",
+        ),
+        (
+            "elif sensor_available > online:",
+            "elif False:",
+            "test_late_source_and_later_sensor_cannot_leak",
+        ),
+    ):
+        replacements.append(("project_live/history.py", old, new, history_command, diagnostic))
     with tempfile.TemporaryDirectory() as temporary:
         copy = Path(temporary) / "repo"
         copy.mkdir()
