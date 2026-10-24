@@ -6,6 +6,7 @@ dependency probe queries public advisory metadata without installing vulnerable 
 
 import argparse
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -31,6 +32,11 @@ def rejects(directory, command, diagnostic):
 
 
 def offline_controls():
+    # Mutate the reviewed pin, so legitimate Action upgrades keep testing the gate.
+    workflow = (ROOT / ".github/workflows/shadow-tests.yml").read_text()
+    checkout_pin = re.search(r"\bactions/checkout@[0-9a-f]{40}\b", workflow)
+    if checkout_pin is None:
+        raise AssertionError("Missing full checkout SHA; run the workflow security gate")
     probes = [
         (
             "project_live/safety_boundary.py",
@@ -85,7 +91,7 @@ def offline_controls():
     replacements = [
         (
             ".github/workflows/shadow-tests.yml",
-            "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            checkout_pin[0],
             "actions/checkout@v4",
             [
                 "zizmor",
