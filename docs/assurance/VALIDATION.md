@@ -46,3 +46,7 @@ Local check outcomes are separate from remote CI. The PR's checks/description wi
 No new safeguards have been implemented. No device access, treatment automation, data upload, live provider call, deployment, merge or administrative change was performed. Public research-method references were consulted without sending the private traffic source to them. Source-domain assertions are not independent evidence for LIVE. No clinical study, formal proof, sandbox validation, deployment-isolation audit or independent human safety review was performed.
 
 Recheck affected evidence on changes to code, contracts, permissions, model versions, fixtures, exposure or assumptions. Merge status and proposed decisions must be reconciled with PRs #2/#3 before any follow-on implementation. ADR 0002 remains proposed, and a documentation merge alone would not accept it.
+
+## Integration review — 24 October 2026
+
+The preceding record preserves the original preparation-time scope and E01–E03 evidence. The owner subsequently authorized integration. PR #3 merged as `4ab8501`; PR #4 was updated against it without runtime changes. ADR 0002 now records explicit acceptance of the lightweight trial, linked from the shared methodology, principles, template and ADR register. Pinned earlier proposal snapshots remain historical; acceptance of the method does not establish the claims. Source restrictions and the independent-review gap remain. Required Python 3.11/3.12 CI must rerun on the reconciled revision before merge.

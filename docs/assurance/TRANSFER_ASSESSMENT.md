@@ -1,8 +1,12 @@
 # Safety methodology and architecture transfer assessment
 
-Status: **Proposed engineering assessment**, 24 October 2026. No clinical validation, certification, demonstrated risk equivalence or actuation authorization is claimed. The question is which methods improve Project LIVE's research discipline, not how to transplant a traffic system. North star: **HOW MUCH HUMAN LIFE DOES THE SYSTEM GIVE BACK?**
+Status: **Engineering assessment; recommendations remain scoped as below**, 24 October 2026. No clinical validation, certification, demonstrated risk equivalence or actuation authorization is claimed. The question is which methods improve Project LIVE's research discipline, not how to transplant a traffic system. North star: **HOW MUCH HUMAN LIFE DOES THE SYSTEM GIVE BACK?**
 
-Read with the [traceability method](TRACEABILITY.md), [initial matrix](CLAIMS_MATRIX.md), [proposed ADR 0002](../decisions/0002-lightweight-assurance-traceability.md) and [validation record](VALIDATION.md).
+Read with the [traceability method](TRACEABILITY.md), [initial matrix](CLAIMS_MATRIX.md), [ADR 0002](../decisions/0002-lightweight-assurance-traceability.md) and [validation record](VALIDATION.md).
+
+## Integration status — 24 October 2026
+
+PR #3 has merged as `4ab8501`, accepting the initial structure preference in ADR 0001. PR #4 adopts only the lightweight method through ADR 0002, links it into METHODOLOGY and the ADR register, and leaves the graph, semantic-transition design, provider isolation and future studies unapproved. PR #2 remains under separate integration review. The baseline table and assessment below preserve the pre-integration evidence and proposal states; they are historical context, not current merge status. The original source restrictions remain unchanged.
 
 ## Source handling and decision baseline
 
@@ -95,13 +99,13 @@ No successful stage obliges the next. Pausing research leaves established treatm
 | PR #3 lifecycle, governance and security | Already requires actual outcomes and review. Add a small claims/evidence supplement, evidence validity and reverse links; do not duplicate policy or fabricate independent reviewers. |
 | PR #3 modularity and Adaptive Perception Graph proposal | Code organization is not security isolation; graph edges are not statistical independence. Require affected-claim review when these designs become concrete. No graph architecture change now. |
 
-Keep the methodology, principles, ledger and AGENTS files unchanged in this main-based PR. PR #3's AGENTS already references methodology. If ADR 0002 is later accepted, add a short link from the eventual METHODOLOGY and ADR register; add claim IDs to affected requirement verification entries when implementations are scoped. No new framework, compliance tool, duplicated contract or global ledger renumbering is warranted.
+The original main-based assessment left PR #3 files unchanged. Integration now adds short methodology/principles links, a conditional template reference and ADR 0002 to the shared register; AGENTS already references methodology. Add claim IDs to affected requirement verification entries when implementations are scoped. No new framework, compliance tool, duplicated contract or global ledger renumbering is warranted.
 
 ## Decisions requiring further review
 
-1. Accept, revise or reject ADR 0002; nominate actual reviewers and decide evidence sufficiency per scoped claim. No independent human review has yet occurred.
+1. Evaluate the accepted ADR 0002 trial after the first implementation; decide evidence sufficiency per scoped claim and measure upkeep. No independent human review has occurred.
 2. Resolve semantic confirmation/authority rules and payload immutability through focused contract work, coordinated with PR #2.
 3. Define executable-plugin isolation and permission/retention enforcement before any untrusted worker or live data integration.
 4. Define prospective evaluation, human-visible output safeguards and escalation evidence for a particular future study; no study is authorized here.
-5. Reconcile links and ADR numbering after PR #3's outcome. ADR 0001 stays proposed; this assessment selects no transport or scheduler.
+5. Reconcile contract references after PR #2 and payload evidence after PR #5. ADRs 0001/0002 have explicit integration decisions; this assessment selects no transport or scheduler.
 6. Independently validate any future source-domain deployment or risk assertion before citing it as evidence. Source publication permissions remain unresolved and are not needed to publish this general assessment.

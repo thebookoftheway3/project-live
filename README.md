@@ -50,4 +50,4 @@ Original Project LIVE code and documentation are provided under the [MIT License
 
 Open source means shared software and methods. Health records, raw recordings, identifiers, credentials and signing material stay outside version control. The initial research runtime cannot command a pump.
 
-Proposed engineering-method addition: [safety methodology transfer assessment and evidence traceability](docs/assurance/TRANSFER_ASSESSMENT.md). This assessment does not establish clinical validation or authorize actuation.
+Engineering methodology and evidence: [safety methodology transfer assessment and evidence traceability](docs/assurance/TRANSFER_ASSESSMENT.md). This assessment does not establish clinical validation or authorize actuation.

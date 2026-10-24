@@ -1,6 +1,6 @@
-# Proposed lightweight claim traceability
+# Lightweight claim traceability
 
-Status: **Proposed supplement**, not an accepted safety case. See [ADR 0002](../decisions/0002-lightweight-assurance-traceability.md). Procedural reference: [PR #3 methodology at 5886ed6](https://github.com/thebookoftheway3/project-live/blob/5886ed63c37fed876dd0a54c20ebd3c7ef224905/docs/METHODOLOGY.md), still unmerged.
+Status: **Adopted research-method supplement on PR #4 merge**, not an accepted safety case. See [ADR 0002](../decisions/0002-lightweight-assurance-traceability.md) and the governing [engineering lifecycle](../METHODOLOGY.md). Apply to affected consequential claims; trivial edits need no new record. The original assessment retains its pinned pre-integration references.
 
 Use **Claim → Hazard → Safeguard → Verification evidence**, with an explicit argument explaining why each item supports the next. A requirement specifies an obligation; a claim asserts a scoped property to assess. Neither a specification, a listed safeguard nor a passed test alone establishes system safety. Start with the [nine claim rows](CLAIMS_MATRIX.md); no special database or tool is required.
 

@@ -1,6 +1,6 @@
 # Initial claims, hazards, safeguards and verification
 
-Status: **Proposed, non-exhaustive research assurance record**, version 1, 24 October 2026. Scope: the current synthetic Python starter and explicitly marked future research contracts. All examples are synthetic. Claim IDs are review obligations, not newly accepted requirements. See [method](TRACEABILITY.md), [assessment](TRANSFER_ASSESSMENT.md) and [execution details](VALIDATION.md).
+Status: **Non-exhaustive research assurance record**, adopted as a tracking method on PR #4 merge, 24 October 2026. Scope: the current synthetic Python starter and explicitly marked future research contracts. All examples are synthetic. Claim IDs are review obligations, not newly accepted requirements. See [method](TRACEABILITY.md), [assessment](TRANSFER_ASSESSMENT.md) and [execution details](VALIDATION.md).
 
 Main references are [R00–R21](../requirements/LEDGER.md). R22–R30 below refer only to [PR #2's proposed ledger at 2c31186](https://github.com/thebookoftheway3/project-live/blob/2c31186f753e5f6d1bfbcb3de075325bfd3915e1/docs/requirements/LEDGER.md). Role responsible for future review: maintainer plus the named domain expertise, not an invented assignee. No independent human reviewer has signed off this matrix.
 

@@ -21,3 +21,5 @@ Trace every interpretation to its supporting evidence and dependencies. Preserve
 Design contracts so later distribution is possible, without building a network before there is need. Distribution and transport selection require an independent ADR comparing operational complexity, fault tolerance, recovery, security and actual measurements. Docker Swarm, K3s, Kubernetes and NATS are not mandatory. A modular monolith provides code organization, not isolation from malicious plugins; sandboxing and credential separation require separate security design.
 
 The strictly non-actuating boundary applies to every module and execution location. A new source, provider, sensor or scheduler must not implicitly gain network permission, private data access or real pump control.
+
+For changes to these boundaries or invariants, apply [claim–hazard–safeguard–verification traceability](../assurance/TRACEABILITY.md) to the affected claims. Keep the architecture contract as the schema owner; assurance records link to it rather than defining a competing schema.
