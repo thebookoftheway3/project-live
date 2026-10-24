@@ -28,3 +28,7 @@ This record is prepared before publishing the commit; use the PR's checks and de
 PR #2 was verified open at `2c31186f753e5f6d1bfbcb3de075325bfd3915e1` before this work; its branch is not a parent of this governance branch. The final PR evidence must confirm it remains unchanged and open. Neither PR is authorized for merge.
 
 No independent human review, clinical validation, hostile-fork test, exhaustive secret/privacy scan, OpenSSF Scorecard run, Best Practices badge assessment, reproducible release build or organization migration was performed. GitHub settings, administrative privileges, credentials and the non-actuating runtime boundary were not changed. The proposed Dependabot file will request update PRs only after adoption; it is not evidence that security updates are enabled.
+
+## Integration review — 24 October 2026
+
+The earlier no-merge authorization statement above records preparation-time scope. The project owner has now explicitly authorized reviewed integration in order #3, #4, #2, #5. PR #3 is current with main `0a99fa7`; no review submissions, discussion comments or unresolved review threads were returned. ADR 0001 records acceptance of the initial implementation preference effective on merge and the independent-review gap. Governance changes add no privileges, credentials or runtime capability. Disabled security controls remain tracked administrator actions, not asserted safeguards. Required CI must pass on this reconciled revision before merge; actual remote results are recorded in PR #3.

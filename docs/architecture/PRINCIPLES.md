@@ -1,6 +1,6 @@
 # Modular architectural principles
 
-These are engineering constraints for future proposals, linked to [ADR 0001 (proposed)](../decisions/0001-modular-monolith-first.md). They do not implement features, replace [SYSTEM.md](SYSTEM.md), change the physiological model or accept the unmerged contracts in [PR #2](https://github.com/thebookoftheway3/project-live/pull/2).
+These are engineering constraints for future proposals, linked to [ADR 0001](../decisions/0001-modular-monolith-first.md). They do not implement features, replace [SYSTEM.md](SYSTEM.md), change the physiological model or accept the unmerged contracts in [PR #2](https://github.com/thebookoftheway3/project-live/pull/2).
 
 Prefer a modular monolith initially. The following are logical responsibilities, not mandatory processes, packages, services or hardware. Define detailed interfaces through separately scoped ADRs and contract PRs before implementation.
 

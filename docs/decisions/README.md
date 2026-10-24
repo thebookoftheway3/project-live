@@ -15,6 +15,6 @@ Changes to interfaces, architectural boundaries or invariants require an ADR or 
 
 | ADR | Status | Scope |
 | --- | --- | --- |
-| [0001](0001-modular-monolith-first.md) | Proposed | Initial implementation structure and criteria for later distribution |
+| [0001](0001-modular-monolith-first.md) | Accepted on PR #3 merge | Initial implementation structure and criteria for later distribution |
 
 Existing blueprint decision identifiers (such as D08) retain their meaning; ADR numbering does not renumber them. PR #2 remains an independent, unmerged specification review.
