@@ -28,11 +28,14 @@ The public blueprint retains the technical specification with personal history o
 
 The Python starter handles synthetic events, environment expiry, illustrative meal-context inference, deterministic replay and denial of all pump actions. Its hand-selected likelihood ratios do **not** implement the specified joint Bayesian state estimator or virtual-sensor framework. Live acquisition, glucose predictive distributions, calibration, active acquisition planning and product clarification prompts remain to be built.
 
+The first [LIVE-022 beverage increment](docs/assurance/LIVE022_INCREMENT.md) adds a separate executable, 27-state synthetic Bayesian example: door/audio detection, one permission-checked mock image query, scale evidence and immutable online snapshots. It uses declared toy likelihoods and a small ambiguity heuristic, with no live inputs or treatment output. Historical investigation and the full LIVE-022 milestone remain incomplete.
+
 With Python 3.11 or later:
 
 ```sh
 python3 -m unittest discover -s tests -v
 python3 -m project_live.cli replay data/synthetic_example.jsonl
+python3 -m project_live.cli beverage data/synthetic_beverage_v1.json
 ```
 
 CI runs the baseline on Python 3.11 and 3.12. Tests need no medical devices or personal records.

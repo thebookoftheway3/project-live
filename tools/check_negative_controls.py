@@ -90,6 +90,55 @@ def offline_controls():
     ]
     replacements = [
         (
+            "project_live/bayes.py",
+            "if leaves.intersection(evidence.source_ids) or groups.intersection(\n"
+            "            evidence.dependence_groups\n        ):",
+            "if False:",
+            [
+                sys.executable,
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "tests",
+                "-p",
+                "test_bayesian_pipeline.py",
+            ],
+            "test_duplicate_leaf_and_shared_error_group_are_withheld",
+        ),
+        (
+            "project_live/sensing.py",
+            "if not policy.permits(completed) or frame.access_reason(completed):",
+            "if False:",
+            [
+                sys.executable,
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "tests",
+                "-p",
+                "test_bayesian_pipeline.py",
+            ],
+            "test_midflight_revocation_and_expiry_withhold_results",
+        ),
+        (
+            "project_live/pipeline.py",
+            "if cutoff is not None and sample.available_at > cutoff:",
+            "if False:",
+            [
+                sys.executable,
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "tests",
+                "-p",
+                "test_bayesian_pipeline.py",
+            ],
+            "test_late_arrival_and_result_cannot_leak_into_earlier_cutoff",
+        ),
+        (
             ".github/workflows/shadow-tests.yml",
             checkout_pin[0],
             "actions/checkout@v4",
