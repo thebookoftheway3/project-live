@@ -19,5 +19,7 @@ State intended behaviour, boundaries, invariants, ownership and versioned contra
 ## Consequences and validation
 Benefits, costs, migration/reversal path, failure modes, acceptance criteria, planned evaluation and actual evidence (keep plans separate from results).
 
+For consequential invariants, link the affected [claims, hazards, safeguards and verification evidence](../assurance/TRACEABILITY.md); reuse existing records and state coverage limits. Trivial changes need no assurance matrix.
+
 ## Revisit conditions
 What observation would invalidate this choice? Record negative results, review date/trigger and follow-up questions.

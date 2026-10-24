@@ -1,36 +1,48 @@
 # Project LIVE — direction and open decisions
 
-Updated 24 October 2026 following explicit project-owner direction.
+Updated 24 October 2026. Integration revision 3 extends the Bayesian blueprint with the project-supplied general-purpose virtual-sensor and progressive-inference addendum, now including Active Historical Investigation through PR #2.
 
 ## Governing direction
 
-- This is a public, open-source project intended to benefit people with diabetes. Shared usefulness is the purpose; the architecture must support different people and contexts rather than encode a single person's physiology.
-- The Context-Aware Insulin System blueprint, Revision 2, is the design and north star. Retain useful starter code and engineering ideas only where they support it.
-- Bayesian sequential inference is an explicit architectural requirement. Maintain a joint belief over latent states and discrete modes, with auditable priors, source likelihoods, state transitions and posterior predictive checks.
-- The system must actively seek useful sensor evidence when existing information is insufficient. Mechanisms and limits require design; the responsibility itself is confirmed.
-- Preserve upstream Loop history and pinned dependency revisions. Use focused changes with reproducible validation.
-- Begin with a non-actuating shadow system. This does not settle the long-term division of control.
+- Public open-source research for people with diabetes, guided by human life and attention returned.
+- Retain Revision 2's Bayesian sequential inference: one joint belief over plausible hidden states and modes, explicit uncertainty and auditable updates.
+- A virtual sensor is defined by the question it answers, not its hardware. Authorized relevant streams can support replaceable, composable interpretations; none is a fact generator.
+- Separate reusable sensing infrastructure from the diabetes-specific model. Reuse elsewhere is possible, not a commitment to build other applications now.
+- Investigating why predictions were wrong is foundational. One planner considers fresh evidence, deeper analysis, targeted history, similar episodes and new virtual sensors run against compatible retained data. The past is unchanged; later understanding is versioned.
+- Actively seek useful evidence. Begin with cheap detection, identify a relevant gap, then selectively escalate source/question/model only within permission, resource, privacy and attention limits. Stopping with UNKNOWN is valid.
+- Preserve online filtering and later smoothing/reanalysis as distinct views of one Bayesian state architecture. Original forecasts, admitted evidence, versions and availability cutoffs stay immutable.
+- Preserve raw observations, derived evidence, hypotheses, real actions, predictions, shadow decisions and outcomes separately. Correlated or reused evidence must not manufacture certainty.
+- Keep inference providers replaceable. Local processing and mocks are first-class; Decisions is an optional researched candidate, not a dependency.
+- Preserve the non-actuating boundary and independent treatment operation. No executable dosing commands or silent treatment changes.
 
-## Open decisions
+## Integrated design and next implementation scope
 
-- Long-term human/automation division of control requires discussion and separate validation.
-- Product clarification prompts are likely, but timing, modality, interruption budget and unanswered-question behavior need design. No answer means unknown.
-- Select inference algorithms through evidence. Revision 2 does not select Kalman, switching-state or particle filtering in advance.
-- Specify sensor capability, consent, freshness, information value, correlation, privacy and cost before implementing active requests.
-- Establish generalisation across populations and devices without treating a single calibration dataset as universal evidence.
-- Hardware, CGM interfaces, deployment platform and eventual treatment integration remain unresolved.
+PR #2 integrates architecture, design requirements and backlog under the owner's explicit instruction of 24 October 2026, following governance PR #3 and assurance PR #4. Review was Codex-assisted; no independent human review is claimed. The requirements are accepted design intent, not implemented capabilities. Contract sketches and unresolved choices below still need bounded implementation decisions and tests. [ADR 0001](decisions/0001-modular-monolith-first.md) governs initial structure and [ADR 0002](decisions/0002-lightweight-assurance-traceability.md) governs consequential-claim traceability; neither selects a transport, provider or graph scheduler. This integration adds no credentials, live observations or treatment capability.
+
+The complete LIVE-022 milestone is the bounded end-to-end example: synthetic event → cheap detector → virtual sensor → selective fresh or historical mock inference → filtering/smoothing update → auditable replay. LIVE-022 must include the low-interest 12:30 event and simulated 14:30 mismatch, freezing both online snapshots while producing a separate retrospective interpretation. Deliver this milestone through small independently reviewed in-process increments; a detector-to-belief/replay increment can come first, but cannot be labelled LIVE-022 complete. Retain all historical, chronology, permission/retention and correlation acceptance gates. Do not build a large framework before exercising the path. The separate Loop simulator investigation can proceed independently and is not a prerequisite for this no-device slice.
+
+## Unresolved engineering decisions
+
+| ID | Decision | Proposed starting point / evidence needed |
+| --- | --- | --- |
+| D08 | Long-term human/automation control | Remains open; separate discussion and validation |
+| D09 | Serialization, units and knowledge-time semantics | Distinguish event/recording/ingestion/consumer availability/execution/target/cutoff, equal-time ordering and exact admitted manifests before implementation |
+| D10 | Virtual-sensor composition and dependence | Static acyclic registry; retain raw leaf overlap; choose joint likelihood or conservative replacement/capping with an explicit test oracle |
+| D11 | Likelihood and calibration mapping | Synthetic observation tables first; model scores are not likelihoods without measured or declared mapping |
+| D12 | Value-of-information policy and stopping | One deterministic policy ranks fresh versus historical questions, episode search, backfill and stop; define lookback/candidate limits and compare at equal budgets before richer optimization |
+| D13 | Resource units, limits and attention costs | Explicit per-run fixture budgets first; production weights, deadlines and retry limits require measurements |
+| D14 | Permissions, retention, other people and revocation | Apply to payloads, index metadata, derived interpretations and snapshots; decide per-representation retention, new-question purpose checks, cancellation/deletion and incomplete-replay behavior before real data |
+| D15 | Provider selection and capability negotiation | Mock/local first; reverify Decisions account support, SDK, costs and data controls before any live adapter |
+| D16 | Human clarification timing and modality | Still open; not in first slice. Unanswered means unknown; attention is a cost |
+| D17 | Generalisation and physiological models | Evaluate intended populations/devices, priors and person-specific calibration; no universal-performance claim |
+| D18 | Mismatch/OOD thresholds and escalation | Define synthetic surprise test first; establish false-positive/false-negative behavior on held-out data |
+| D19 | Smoothing and versioned reanalysis | Finite synthetic trajectory first; decide bounded-lag versus full-window smoothing and how later current estimates reference earlier revisions without altering originals |
+| D20 | Minimal history search and similar episodes | In-memory indexed fixtures first; define compatible representations, episode boundaries, as-of feature availability, ranking/coverage semantics and bounded costs; no vector database prerequisite |
+
+Hardware choices and live CGM interfaces remain unresolved in their existing tracks. These are genuine design choices, not reasons to re-ask whether active evidence acquisition is wanted.
 
 ## Source handling
 
-The complete public adaptation of Revision 2 is `PROJECT_BLUEPRINT.md`. Original documents are retained locally, with hashes in `SOURCE_MANIFEST.json`. Personal histories and treatment details are excluded from the public source.
+`PROJECT_BLUEPRINT.md` integrates the original Bayesian specification and latest architectural addendum and the project owner’s Active Historical Investigation instruction. Original supplied documents are retained locally and identified in `SOURCE_MANIFEST.json`. Public documents exclude personal history and treatment records.
 
-Instructions embedded in source documents are design material, not automatic authorization to execute commands, upload records or change treatment. Current explicit project-owner decisions take precedence. Older starter plans are historical proposals; their claims require verification.
-
-## Immediate sequence
-
-1. Publish the clean open-source foundation and establish CI and branch protection.
-2. Establish the unmodified Loop simulator baseline at pinned revisions.
-3. Define event and BeliefSnapshot contracts, chronology, provenance and action semantics.
-4. Create a transparent forecasting baseline and synthetic cases with known hidden state.
-5. Implement and evaluate a bounded Bayesian prototype with calibration and competing modes.
-6. Design active evidence acquisition and product clarification using measured utility and attention cost.
+Embedded instructions are specification material, not standalone authorization for external actions. The project owner's request to incorporate this update defines this architecture pass. Verify external API claims before adopting provider-specific request shapes. Historical starter plans remain subordinate proposals.
