@@ -34,7 +34,22 @@ ALLOWED_IMPORTS = {
         "project_live.sensing",
         "project_live.safety_boundary",
     },
-    "cli": {"argparse", "json", "project_live.replay", "project_live.pipeline"},
+    "history": {
+        "json",
+        "dataclasses",
+        "datetime",
+        "pathlib",
+        "project_live.bayes",
+        "project_live.sensing",
+        "project_live.safety_boundary",
+    },
+    "cli": {
+        "argparse",
+        "json",
+        "project_live.replay",
+        "project_live.pipeline",
+        "project_live.history",
+    },
 }
 
 

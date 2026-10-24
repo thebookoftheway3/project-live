@@ -31,3 +31,5 @@ Dependencies are engineering prerequisites, not a demand to finish a full framew
 | LIVE-023 | Minimal indexed historical evidence and episode queries — R30 | P0 | Proposed; not implemented | LIVE-004/017 | In-memory index over synthetic envelopes and episode references; bounded time/source/as-of queries, compatible retained representations, permission/retention filters before ranking; deterministic simple similarity and explicit coverage/absence reasons |
 
 See [contracts](architecture/VIRTUAL_SENSOR_CONTRACTS.md), [first-slice design](design/SYNTHETIC_VIRTUAL_SENSOR_SLICE.md) and [decision register](PROJECT_DIRECTION.md#unresolved-engineering-decisions). Production plugin systems, applications in other domains and live treatment changes are outside this backlog expansion.
+
+LIVE-022 now also has a [bounded synthetic history increment](assurance/LIVE022_HISTORY.md): retained-frame retrieval, one selective mock reinterpretation and immutable online/retrospective trajectory views. Full scenario-family acceptance, backfill/version comparison and acquisition-policy evaluation remain incomplete.
