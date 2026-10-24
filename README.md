@@ -16,6 +16,9 @@ The first deliverable is a non-actuating shadow system. Current code is a synthe
 - [Requirements and evidence](docs/requirements/LEDGER.md)
 - [Implementation backlog](docs/BACKLOG.md)
 - [Contributing](CONTRIBUTING.md)
+- [Governance](GOVERNANCE.md), [code of conduct](CODE_OF_CONDUCT.md) and [security reporting](SECURITY.md)
+- [Engineering methodology](docs/METHODOLOGY.md), [architectural decisions](docs/decisions/README.md) and [modularity principles](docs/architecture/PRINCIPLES.md)
+- [Agent operating rules](AGENTS.md) and [verified security baseline / administrator checklist](docs/security/BASELINE.md)
 - [Source provenance](docs/SOURCE_MANIFEST.json), [pinned upstream baseline](docs/UPSTREAM_BASELINE.json), and [setup evidence](docs/SETUP_STATUS.md)
 
 The public blueprint retains the technical specification with personal history omitted. Original supplied documents remain in an ignored local archive.
