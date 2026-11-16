@@ -13,8 +13,8 @@ describes a hypothetical future system, not an authorized clinical deployment.
 
 | Failure / cause | Effect | Implemented research safeguard | Verification and remaining gap |
 | --- | --- | --- | --- |
-| Proposal exceeds scheduled rate; AI or input error | Excess delivery if connected; potentially severe | Pure bench clamp; no pump transport | Enumerated C++ cases; schedule authenticity and hardware bypass resistance unverified |
-| Endless renewal, timer reset or process failure | Prolonged suppression if connected | Original green start retained; 30-minute bench expiry | Repeated-renewal and exact-boundary tests; real independent watchdog/reset persistence absent |
+| Proposal exceeds scheduled rate; AI or input error | Excess delivery if connected; potentially severe | C++/C99 bench clamp; no pump transport | Enumerated C++ cases; schedule authenticity and hardware bypass resistance unverified |
+| Endless renewal, timer reset or process failure | Prolonged suppression if connected | Original green start retained; 30-minute bench expiry | Repeated-renewal and exact-boundary tests; 10-second Zephyr watchdog configured; physical reset and persistence unverified |
 | Noisy pause/resume toggling | Repeated unintended interruption | Explicit 15-minute bench lockout | Boundary tests; clinical appropriateness and persistent hardware state unverified |
 | Missing/duplicate/stale delivery bins | False belief about delivery budget | 180 contiguous integer bins; UNKNOWN on incomplete history | Gap/stale/order/55% boundary tests; no actual pump delivery confirmation |
 | A 55% threshold is physiologically inadequate | Harm despite a “passing” budget | No clinical adequacy claim and no real control | Qualified evaluation required; no test establishes DKA prevention |
@@ -37,3 +37,25 @@ schedule, or that a physiological minimum applies to a person.
 
 See [verification plan](GRANT_VERIFICATION_PLAN.md) for proposed experiments and
 [executed results](assurance/WP_REFACTOR_VALIDATION.md) for present evidence.
+
+## Thingy:91 X target review
+
+Scope extension: [ADR 0005](decisions/0005-nordic-thingy91x-hardware-target.md).
+PCA20065 is the target, not a validated hardware safety barrier. Physical
+hardware/RF/BLE tests remain pending hardware delivery.
+
+| Failure / cause | Effect | Implemented safeguard / pending verification |
+| --- | --- | --- |
+| Carb input ignored or concert mode confused with alarm muting | Unwanted experimental reduction or misleading protection claim | C99 timed guards and host boundary tests; no clinical alarm control; physical button tests pending |
+| Wrong alias, shared reset line or switch mistaken for button | Missed event, reset or electrical contention | Vendor DTS preserved; P1.15 input-only overlay; delivered revision and other-processor firmware review required |
+| ISR bounce/flood or held input at startup | Lost event or unpredictable timing | Atomic event coalescing, main-loop state ownership and held-level sampling; actual timing/load tests pending |
+| Stalled loop or failed initialization | Experimental state stops updating | Stop watchdog feeds on errors; requested 10-second reset; actual timeout/reset and radio-load tests pending |
+| Reboot clears protection/history | Apparent clearance without evidence | 180-minute startup hold, no green on unknown ledger; power-cycle, reset persistence and monotonic-clock verification pending |
+| Next minute passes budget but whole command fails | Excess hypothetical suppression | C99 checks every projected minute through the capped lease; flat future schedule assumption remains a limitation |
+| PMIC model wrong, low battery or shared bus contention | Brownout, wrong SoC estimate or reset | Integrated vendor power design is documented; no implemented fuel-gauge telemetry or independent power-safety validation |
+| Unsupported +8 dBm or same-vendor compatibility assumption | Misconfigured build or failed links | nRF5340 +3 dBm controller setting; no G7/O5 transport; RF tests pending |
+| Wi-Fi and BLE share power/antenna resources; LTE unavailable | Both network paths fail together | No redundancy guarantee; local evaluator needs no network; actual coexistence/failover tests pending |
+| Public SDK development keys treated as production trust roots | Unauthorized firmware accepted in a future product | No keys added, flash or release performed; separate secure provisioning design required |
+
+See [target validation](assurance/THINGY91X_VALIDATION.md) for C99 mutation controls
+and build limitations. A CPU watchdog is not an independent physical interlock.

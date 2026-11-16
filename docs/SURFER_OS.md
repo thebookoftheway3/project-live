@@ -32,7 +32,7 @@ unchanged outside Git; [source manifest](SOURCE_MANIFEST.json) records their has
 
 | Surfer OS responsibility | Work package | Current state |
 | --- | --- | --- |
-| Deterministic constraints, timing and delivery-history accounting | WP1 | Host C++ simulation; real radio/pump transport absent |
+| Deterministic constraints, timing and delivery-history accounting | WP1 | Thingy:91 X Zephyr C99 bench target and preserved C++ tests; real pump transport absent |
 | Multi-temporal inference, evidence acquisition and attention policy | WP2 | Baseline inference and consent-gated G6 consumer preserved; separate synthetic attention/session experiments |
 | Home perception and nomadic context | WP3 | Geometry/privacy experiments; model/device integrations remain open |
 | Human observation, preemption and binary feedback | WP4 | Passive SwiftUI source scaffolds; no installable app or delivery transport |
@@ -46,7 +46,7 @@ flowchart LR
     B -. future evaluated utility model .-> A
     A -. candidate only .-> U[Passive human interface / WP4]
     U -. synthetic reply or attention clearance .-> A
-    M[Deterministic bench model / WP1] --> T[Synthetic invariant tests]
+    M[Thingy:91 X / Zephyr bench target / WP1] --> T[Synthetic invariant tests]
     I[Independent established treatment]
 ```
 
@@ -92,8 +92,8 @@ The private Loop importer has no HTTP upload route.
 
 | Older proposal | Updated interpretation / next evidence |
 | --- | --- |
-| Swift MMU in Loop versus dedicated C++ bridge | Keep the requested WP1 C++ bench model; final hardware/Swift placement requires an independent control architecture decision. WP4 stays passive. |
-| “Stateless” MMU with watchdog and hysteresis | Pure calculation over explicit temporal state; independent state ownership and restart behavior remain hardware work. |
+| Swift MMU in Loop versus dedicated C++ bridge | ADR 0005 selects THINGY91X/PCA20065 for a Zephyr C99 bench target, preserving C++ host tests. This does not authorize a treatment controller; WP4 stays passive. |
+| “Stateless” MMU with watchdog and hysteresis | Pure calculation over explicit temporal state; C99 state ownership, conservative reboot hold and fault latch are implemented; physical reset behavior remains untested. |
 | Zero upward actuation guarantees safety | Narrow candidate invariant only. Downward changes, bad schedules and missing delivery can also cause harm; no safety guarantee follows. |
 | 55% basal floor prevents DKA | Unvalidated research parameter; ledger accounting cannot establish physiological protection or delivery. |
 | G7 warmup / compression logic suppresses alarms | Preserve quality hypotheses only. No automatic alarm suppression, basal pause or clinical threshold is implemented. Motion-present versus motion-absent examples conflict and require a measured detector model. |
@@ -111,3 +111,22 @@ The [grant verification plan](GRANT_VERIFICATION_PLAN.md),
 and [executed evidence](assurance/WP_REFACTOR_VALIDATION.md) define the next review.
 No grant eligibility, regulatory classification, independent certification or
 exclusive IP ownership follows from this product description.
+
+## Thingy:91 X target update
+
+[ADR 0005](decisions/0005-nordic-thingy91x-hardware-target.md) and the
+[vendor manifest](../wp1-deterministic-mmu-bridge/hardware-vendor/MANIFEST.md)
+select the integrated nRF5340/nRF9151/nRF7002 platform with nPM1300/nPM6001 and
+1350 mAh battery. Native nRF5340 TX power is +3 dBm; same-vendor silicon does
+not establish G7/O5 compatibility. Included SIM cards do not establish a soldered
+multi-IMSI eSIM. GPIO aliases are processor-relative; the second app-core alias
+comes from a project overlay, not two interchangeable vendor `sw0`/`sw1` inputs.
+
+The C99 evaluator adds 60-minute carb and 180-minute concert research guards,
+whole-duration budget projection and a conservative reboot hold. The Zephyr app
+initializes BLE and a 10-second watchdog but supplies no real schedule, delivery
+history, green requests or pump/network output. It is not a deployed failover
+system. Physical hardware/RF/BLE tests remain pending hardware delivery, including
+button routing, shared reset signals, radio coexistence, PMIC ownership and CAD fit.
+[Verification evidence](assurance/THINGY91X_VALIDATION.md) separates executed checks
+from those pending tests. The 55% floor does not establish DKA prevention.

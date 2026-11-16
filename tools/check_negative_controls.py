@@ -283,6 +283,33 @@ def offline_controls():
         replacements.append(
             ("project_live/loop_observations.py", old, new, loop_command, diagnostic)
         )
+    # Exercise the C99 target's independent constraints with diagnostic matching.
+    for old, new, diagnostic in (
+        (
+            "{s, in.scheduled, true, MMU_SCHEDULE}",
+            "{s, in.requested, true, MMU_SCHEDULE}",
+            "zero upward invariant",
+        ),
+        (
+            "if (!s.green)",
+            "if (in.request_green)",
+            "renewal cannot extend lease",
+        ),
+        ("in.now_ms < s.carb_until_ms", "false", "carb guard"),
+        ("in.now_ms < s.concert_until_ms", "false", "concert guard"),
+        ("in.now_ms < s.lockout_until_ms", "false", "reset lockout"),
+        ("sum_o * 100 < sum_s * 55", "sum_o * 100 < sum_s * 54", "historical deficit rejected"),
+        ("i < minutes", "i < 1", "whole duration budget"),
+    ):
+        replacements.append(
+            (
+                "wp1-deterministic-mmu-bridge/firmware/src/conflict_monitor.c",
+                old,
+                new,
+                ["sh", "tools/check_mmu.sh"],
+                diagnostic,
+            )
+        )
     with tempfile.TemporaryDirectory() as temporary:
         copy = Path(temporary) / "repo"
         copy.mkdir()

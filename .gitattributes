@@ -1,0 +1,4 @@
+# Preserve vendor CAD bytes and avoid rendering mechanical models as source diffs.
+wp1-deterministic-mmu-bridge/hardware-vendor/*.step binary
+# Nordic's original licence uses CRLF; preserve its hashed bytes.
+wp1-deterministic-mmu-bridge/hardware-vendor/License.txt -text whitespace=cr-at-eol

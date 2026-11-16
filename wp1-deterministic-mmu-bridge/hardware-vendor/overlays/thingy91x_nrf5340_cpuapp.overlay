@@ -1,0 +1,19 @@
+/* SPDX-License-Identifier: AGPL-3.0-only */
+/* Project overlay, not an unmodified Nordic file.
+ * sw0 is the SDK's Button 2 (P0.24). Button 1 is exposed by Nordic as
+ * zephyr,user/button1-gpios P1.15. Use it ONLY as an input; never drive it.
+ * This shared signal must be reviewed against the delivered board revision.
+ */
+/ {
+    buttons {
+        live_button1: live_button_1 {
+            gpios = <&gpio1 15 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+            label = "Button 1 - research concert protection";
+        };
+    };
+    aliases {
+        sw1 = &live_button1;
+        watchdog0 = &wdt0;
+    };
+};
+&wdt0 { status = "okay"; };

@@ -20,4 +20,6 @@ Changes to interfaces, architectural boundaries or invariants require an ADR or 
 | [0003](0003-observation-payload-snapshots.md) | Accepted on PR #5 merge | Observation JSON snapshot ownership and detached reads |
 | [0004](0004-work-package-research-monorepo.md) | Proposed | WP1–WP4 research layout, isolated bench models and explicit integration gaps |
 
+| [0005](0005-nordic-thingy91x-hardware-target.md) | Proposed | Thingy:91 X C99 research target, hardware corrections and non-actuating boundary |
+
 Existing blueprint decision identifiers (such as D08) retain their meaning; ADR numbering does not renumber them. PR #2 integrates design requirements; its concrete contract choices remain in the [open-decision register](../PROJECT_DIRECTION.md#unresolved-engineering-decisions). The Adaptive Perception Graph remains a separate proposed design.

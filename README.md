@@ -15,7 +15,7 @@ grant targets below are not achieved results or funding/clinical claims.
 
 | Package | Current deliverable | Proposed KPI |
 | --- | --- | --- |
-| [WP1: deterministic MMU bridge](wp1-deterministic-mmu-bridge/README.md) | C++ host interlock/budget simulation, radio seams and enclosure concept | 0 upward violations in defined tests; <3 s measured Wi-Fi/LTE-M failover |
+| [WP1: deterministic MMU bridge](wp1-deterministic-mmu-bridge/README.md) | Thingy:91 X / Zephyr C99 bench target, retained C++ host tests and vendor CAD | 0 upward violations in defined tests; <3 s measured Wi-Fi/LTE-M failover |
 | [WP2: Bayesian and attention engine](wp2-bayesian-voi-engine/README.md) | Preserved consent-gated inference; EVSI, detector/session experiments; authenticated synthetic API | >80% fewer research interruptions; >85% binary response rate |
 | [WP3: edge context](wp3-edge-vision-pipelines/README.md) | Metric geometry/privacy experiments and Halo/Frame interface scaffold | <12% normalized volume MAE; 0 raw-media/biometric egress bytes |
 | [WP4: passive clients](wp4-passive-ui-clients/README.md) | iOS/watch SwiftUI source scaffolds | Independent synthetic setup in <30 min |
@@ -28,7 +28,7 @@ flowchart LR
     B -. future evaluated utility model .-> Q
     Q -. one binary candidate .-> U[WP4 passive human interface]
     U -. reply / attention clearance .-> Q
-    M[WP1 deterministic bench model] --> V[Host invariant verification]
+    M[WP1 Thingy:91 X / Zephyr bench target] --> V[Host invariant verification]
     T[Independent established treatment]
 ```
 
@@ -39,13 +39,13 @@ and [actual validation](docs/assurance/WP_REFACTOR_VALIDATION.md).
 
 ## One-command synthetic setup
 
-With Python 3.11+ and a C++17 compiler, run from the repository root:
+With Python 3.11+ and C99/C++17 compilers, run from the repository root:
 
 ```sh
 sh tools/setup_research.sh
 ```
 
-This runs the Python experiments, baseline replay and C++ host checks without
+This runs the Python experiments, baseline replay and C99/C++ host checks without
 downloads, device access or personal data. `PYTHON=/path/to/python3.12` selects an
 interpreter. The [optional Compose/API instructions](wp2-bayesian-voi-engine/README.md)
 cover FastAPI, Mosquitto and local Ollama; no VLM weights or live integrations are
@@ -59,6 +59,13 @@ the existing CLI and shared test commands.
 The **Context-Aware Insulin System blueprint**, including Revision 2’s Bayesian foundation and the general-purpose virtual-sensor and Active Historical Investigation extensions, governs the design. Its explicit foundation is a Bayesian belief state: distributions over plausible hidden states and competing explanations, updated as evidence arrives. A virtual sensor is a testable question about authorized evidence, independent of hardware. Cheap detectors trigger selective deeper inference; the same planner can also retrieve and reinterpret retained historical evidence to investigate a prediction mismatch. Original online snapshots remain distinct from later retrospective understanding, and the planner can stop with uncertainty. The Codex starter contributes useful scaffolding, not the project's ambitions.
 
 The first deliverable is a non-actuating shadow system. Current code is a synthetic research example, not a treatment system. The broad mission is to benefit people with diabetes; usefulness and suitability across different people, diabetes types, therapies and devices still require evidence.
+
+WP1 now targets **Nordic Thingy:91 X (THINGY91X/PCA20065)** with nRF Connect SDK
+3.2.1. [Build instructions](wp1-deterministic-mmu-bridge/README.md),
+[vendor hashes/CAD](wp1-deterministic-mmu-bridge/hardware-vendor/MANIFEST.md) and
+[ADR 0005](docs/decisions/0005-nordic-thingy91x-hardware-target.md) distinguish
+source implementation from validation. Physical hardware/RF/BLE tests remain
+pending hardware delivery; no real pump transport or measured failover is claimed.
 
 ## Start here
 
