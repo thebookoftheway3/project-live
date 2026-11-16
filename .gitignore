@@ -39,3 +39,7 @@ secrets/
 .external/
 .venv/
 .DS_Store
+
+# Vendor firmware/distribution archives: URLs and SHA-256 live in MANIFEST.md.
+*.hex
+*.zip

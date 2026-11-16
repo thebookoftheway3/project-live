@@ -12,7 +12,7 @@ The upstream Loop license includes MIT terms and exceptions for particular frame
 Review each component's own notices before copying or redistributing it. Linked research documents retain their original ownership and are not relicensed by this repository.
 # Surfer OS refactor provenance (2026-11-16)
 
-The WP1–WP4 additions are Codex-assisted original research scaffolding; no Loop,
+The PR #16 WP1–WP4 additions were Codex-assisted original research scaffolding; no Loop,
 OmnipodKit, camera/model implementation or device SDK was copied into these paths.
 Supplied design references are identified in [the source manifest](docs/SOURCE_MANIFEST.json),
 with private context omitted from the public derivative. Existing attribution and
@@ -28,3 +28,14 @@ Neither pinning nor this record grants rights to third-party model weights.
 SAM 2, Depth Anything V2, Re-ID and Brilliant device implementations are referenced
 but not vendored or downloaded. Review each selected checkpoint/SDK licence before
 future integration or OEM packaging.
+
+## Thingy:91 X vendor artifacts (PR following #16)
+
+Nordic PCA20065 hardware package 2.0.0 extracts and NCS v3.2.1 board-source
+snapshots are now vendored under `wp1-deterministic-mmu-bridge/hardware-vendor/`.
+The [manifest](wp1-deterministic-mmu-bridge/hardware-vendor/MANIFEST.md) records
+original filenames, immutable source URLs, SHA-256 hashes and separate Nordic
+licences/disclaimers. These files are not relicensed under MIT or AGPL. Modem and
+application ZIPs are hashed references only, excluded from Git. The project overlay
+and new C source carry their own AGPL-3.0-only markers. SDK/toolchain components
+used externally for verification retain their own licensing terms.
