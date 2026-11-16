@@ -49,7 +49,13 @@ Disclose accepted project sponsorship, its recipient, purpose and material condi
 | Release authority | Explicit approval of an identified artifact and release process; not granted by ordinary contribution or sponsorship. |
 | Clinical validation claims | Require evidence specific to population, intended use, version and evaluation. Neither MIT, a merge, sponsorship nor passing synthetic tests establishes clinical validation. |
 
-Original contributions remain under MIT without copyright assignment or a contributor licence agreement. The current inbound MIT policy is sufficient for the present original-code/documentation scope; imported work requires separate provenance and licence review. Any proposed change needs a public, explicitly reviewed governance decision. This policy cannot prevent forks or commercial reuse allowed by MIT.
+The preserved foundation remains MIT. The owner-requested WP refactor introduces
+explicit AGPL-3.0-only headers on new source files; see
+[licensing scope and OEM limits](LICENSE-COMMERCIAL.md). There is no copyright
+assignment or contributor licence agreement, and no automatic right to grant
+commercial exceptions for other contributors' work. Imported work requires separate
+provenance/licence review. Further changes need a public, explicitly reviewed
+decision. This policy cannot revoke earlier MIT grants or prevent permitted reuse.
 
 ## Changing this model
 

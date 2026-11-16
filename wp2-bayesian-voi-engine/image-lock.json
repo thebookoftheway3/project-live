@@ -1,0 +1,10 @@
+{
+  "resolved_on": "2026-11-16",
+  "method": "docker buildx imagetools inspect; public multi-platform index digests",
+  "images": {
+    "python:3.12-slim": "sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b",
+    "eclipse-mosquitto:2": "sha256:75d6662dee52c947dc9dd9c29f1d8d7ffef78ddaf38001caa09755681e8bbc98",
+    "ollama/ollama:latest": "sha256:910d0d8107b538fb0894e63163eb195de0cc7aefcbc666dc62d3b18f71124592"
+  },
+  "status": "Metadata verified; full stack runtime and image vulnerability assessment not performed. No VLM weights included."
+}

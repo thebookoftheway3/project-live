@@ -1,8 +1,60 @@
-# Project LIVE
+# Project LIVE — Surfer OS research
 
 **Open-source research for people with diabetes. North star: how much human life does the system give back?**
 
 Project LIVE develops a context-aware insulin research system that models history, actively seeks useful evidence, preserves uncertainty and reduces the attention required for diabetes management. The work is public so people can study it, contribute, adapt it and benefit from it.
+
+**Surfer OS** is the product direction within Project LIVE: transparent context,
+home/nomadic continuity and attention-budgeted human interaction. The
+[updated product design](docs/SURFER_OS.md) uses the older Surfer OS specification
+as inspiration and distinguishes implemented experiments from future integrations.
+The repository is organized into four R&D work packages for technical review;
+grant targets below are not achieved results or funding/clinical claims.
+
+## Work packages and verification targets
+
+| Package | Current deliverable | Proposed KPI |
+| --- | --- | --- |
+| [WP1: deterministic MMU bridge](wp1-deterministic-mmu-bridge/README.md) | C++ host interlock/budget simulation, radio seams and enclosure concept | 0 upward violations in defined tests; <3 s measured Wi-Fi/LTE-M failover |
+| [WP2: Bayesian and attention engine](wp2-bayesian-voi-engine/README.md) | Preserved consent-gated inference; EVSI, detector/session experiments; authenticated synthetic API | >80% fewer research interruptions; >85% binary response rate |
+| [WP3: edge context](wp3-edge-vision-pipelines/README.md) | Metric geometry/privacy experiments and Halo/Frame interface scaffold | <12% normalized volume MAE; 0 raw-media/biometric egress bytes |
+| [WP4: passive clients](wp4-passive-ui-clients/README.md) | iOS/watch SwiftUI source scaffolds | Independent synthetic setup in <30 min |
+
+```mermaid
+flowchart LR
+    P[Consented local Loop observations] --> B[WP2 Bayesian research core]
+    H[WP3 home context] -. semantic evidence .-> Q[WP2 attention session]
+    N[WP3 nomadic context] -. semantic evidence .-> Q
+    B -. future evaluated utility model .-> Q
+    Q -. one binary candidate .-> U[WP4 passive human interface]
+    U -. reply / attention clearance .-> Q
+    M[WP1 deterministic bench model] --> V[Host invariant verification]
+    T[Independent established treatment]
+```
+
+Dashed connections are synthetic/proposed integrations. There is no research-to-pump
+command path. See [measurement definitions](docs/GRANT_VERIFICATION_PLAN.md),
+[FMEA](docs/FMEA_SAFETY_ANALYSIS.md), [ADR 0004](docs/decisions/0004-work-package-research-monorepo.md)
+and [actual validation](docs/assurance/WP_REFACTOR_VALIDATION.md).
+
+## One-command synthetic setup
+
+With Python 3.11+ and a C++17 compiler, run from the repository root:
+
+```sh
+sh tools/setup_research.sh
+```
+
+This runs the Python experiments, baseline replay and C++ host checks without
+downloads, device access or personal data. `PYTHON=/path/to/python3.12` selects an
+interpreter. The [optional Compose/API instructions](wp2-bayesian-voi-engine/README.md)
+cover FastAPI, Mosquitto and local Ollama; no VLM weights or live integrations are
+preinstalled. This is not a full hardware deployment.
+
+The merged starting point is the annotated tag `v1.0-shadow-baseline` at
+`0718c94402dceefb435c2adf06db3b7faf9b02dc`. The original package moved with `git mv`
+to `wp2-bayesian-voi-engine/src/project_live`; a root compatibility link preserves
+the existing CLI and shared test commands.
 
 The **Context-Aware Insulin System blueprint**, including Revision 2’s Bayesian foundation and the general-purpose virtual-sensor and Active Historical Investigation extensions, governs the design. Its explicit foundation is a Bayesian belief state: distributions over plausible hidden states and competing explanations, updated as evidence arrives. A virtual sensor is a testable question about authorized evidence, independent of hardware. Cheap detectors trigger selective deeper inference; the same planner can also retrieve and reinterpret retained historical evidence to investigate a prediction mismatch. Original online snapshots remain distinct from later retrospective understanding, and the planner can stop with uncertainty. The Codex starter contributes useful scaffolding, not the project's ambitions.
 
@@ -24,9 +76,9 @@ The first deliverable is a non-actuating shadow system. Current code is a synthe
 
 The public blueprint retains the technical specification with personal history omitted. Original supplied documents remain in an ignored local archive.
 
-## What runs today
+## Preserved Bayesian research core
 
-The Python starter handles synthetic events, environment expiry, illustrative meal-context inference, deterministic replay and denial of all pump actions. Its hand-selected likelihood ratios do **not** implement the specified joint Bayesian state estimator or virtual-sensor framework. Live acquisition, glucose predictive distributions, calibration, active acquisition planning and product clarification prompts remain to be built.
+The Python starter handles synthetic events, environment expiry, illustrative meal-context inference, deterministic replay and denial of all pump actions. Its hand-selected likelihood ratios do **not** implement the full specified Bayesian state estimator or virtual-sensor framework. The separate WP2 experiments do not establish clinical calibration, live sensing, a physiological controller or a deployed prompting product.
 
 The first [LIVE-022 beverage increment](docs/assurance/LIVE022_INCREMENT.md) adds a separate executable, 27-state synthetic Bayesian example: door/audio detection, one permission-checked mock image query, scale evidence and immutable online snapshots. It uses declared toy likelihoods and a small ambiguity heuristic, with no live inputs or treatment output. Historical investigation and the full LIVE-022 milestone remain incomplete.
 
@@ -52,7 +104,11 @@ Contributions in modelling, accessibility, human factors, sensor integration, te
 
 ## License and data
 
-Original Project LIVE code and documentation are provided under the [MIT License](LICENSE). Separate upstream projects and assets retain their own licenses; see [third-party provenance](THIRD_PARTY_NOTICES.md).
+The preserved foundation is [MIT](LICENSE). New source files marked AGPL-3.0-only
+use [AGPLv3](LICENSE-AGPLv3), with a possible separately negotiated OEM option; see
+[exact licensing scope](LICENSE-COMMERCIAL.md). Existing MIT rights remain intact.
+Separate upstream projects/assets retain their licences; see
+[third-party provenance](THIRD_PARTY_NOTICES.md).
 
 Open source means shared software and methods. Health records, raw recordings, identifiers, credentials and signing material stay outside version control. The initial research runtime cannot command a pump.
 

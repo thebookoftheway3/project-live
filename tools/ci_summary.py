@@ -44,6 +44,8 @@ def main():
         "docs",
         "tests",
         "replay",
+        "mmu",
+        "api",
         "coverage",
         "negative",
         "audit",

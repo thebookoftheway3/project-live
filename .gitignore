@@ -8,6 +8,9 @@ coverage.json
 coverage.txt
 audit.json
 .venv/
+build/
+dist/
+*.egg-info/
 .env
 .env.*
 .DS_Store

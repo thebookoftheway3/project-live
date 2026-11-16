@@ -1,5 +1,10 @@
 # Context-Aware Insulin System — Research & Design Blueprint
 
+Product implementation update (2026-11-16): [Surfer OS](docs/SURFER_OS.md) organizes
+the requested WP1–WP4 research within Project LIVE. This earlier blueprint remains
+the source for evidence/uncertainty and independent-treatment principles; the
+updated product document records conflicts and unresolved integration decisions.
+
 **Public engineering specification | 24 October 2026 | Integration revision 3: virtual sensors, Bayesian inference and active historical investigation**
 
 Adapted from the supplied Revision 2 specification for public collaboration. Personal history and treatment details are omitted; the original is preserved locally and identified by hash in `docs/SOURCE_MANIFEST.json`. Technical requirements are retained. Subsequent explicit project direction adds a public, open-source mission and active information gathering as a confirmed requirement. This integration incorporates the General-Purpose Virtual Sensor Architecture and Progressive Bayesian Inference addendum while retaining the Revision 2 Bayesian foundation. The architecture/specification integrated through PR #2 includes Active Historical Investigation: investigating why predictions were wrong is a foundational capability. Neither extension authorizes live sensing or full implementation.

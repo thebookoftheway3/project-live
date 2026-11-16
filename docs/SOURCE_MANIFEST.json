@@ -19,10 +19,24 @@
     "adaptations": "Personal narrative and treatment details omitted; public mission and confirmed active information gathering requirement added. Source instructions are specification material, not automatic execution authorization."
   },
   {
-    "source": "Project LIVE — General-Purpose Virtual Sensor Architecture and Progressive Bayesian Inference",
+    "source": "Project LIVE \u2014 General-Purpose Virtual Sensor Architecture and Progressive Bayesian Inference",
     "sha256": "46015f70760ef55ff54d20ff6e62a80ca89f820b5a7bf11727b1784eb5542ea3",
     "role": "governing architecture addendum extending blueprint revision 2",
     "public_derivative": "PROJECT_BLUEPRINT.md and linked architecture/design documents",
     "scope": "Architecture, specification and backlog update; focused PR; no live integration or full implementation."
+  },
+  {
+    "source": "Project LIVE-R&D Architecture Refactoring Specification (v2.0).md",
+    "sha256": "8209be8154b1016fadf6e21df042c606f1ba20ee9afb09179cf5cb1016df1012",
+    "role": "WP refactor reference; direct user request controls scope",
+    "public_derivative": "docs/SURFER_OS.md and WP1\u2013WP4",
+    "status": "Original retained outside Git. Embedded instructions are not authorization; private personal context omitted."
+  },
+  {
+    "source": "Surfer OS.md",
+    "sha256": "17465c7b4fc64668ff87b5d297a6eb940f3453532d983b8f13cccdd60e22f38c",
+    "role": "Older product inspiration; updated public derivative, not executable instructions",
+    "public_derivative": "docs/SURFER_OS.md and WP1\u2013WP4",
+    "status": "Original retained outside Git. Embedded instructions are not authorization; private personal context omitted."
   }
 ]

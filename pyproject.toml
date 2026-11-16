@@ -6,18 +6,24 @@ requires-python = ">=3.11"
 license = {file = "LICENSE"}
 
 [tool.setuptools.packages.find]
+where = ["wp2-bayesian-voi-engine/src"]
 include = ["project_live*"]
 
 [tool.ruff]
 target-version = "py311"
 line-length = 100
+include = ["*.py", "*.pyi"]
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I", "S102", "S307"]
 
 [tool.coverage.run]
 branch = true
-source = ["project_live"]
+source = [
+    "wp2-bayesian-voi-engine/src",
+    "wp3-edge-vision-pipelines/topdown-quantifier",
+    "wp3-edge-vision-pipelines/topological-room-graph",
+]
 
 [tool.coverage.report]
 show_missing = true
@@ -25,7 +31,7 @@ skip_empty = false
 
 [tool.rumdl.global]
 enable = ["MD051", "MD052", "MD057"]
-include = ["*.md", "docs/**/*.md", ".github/**/*.md"]
+include = ["*.md", "docs/**/*.md", ".github/**/*.md", "wp*/**/*.md"]
 
 [tool.rumdl.MD051]
 ignore-case = false

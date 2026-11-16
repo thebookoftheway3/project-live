@@ -1,5 +1,11 @@
 # Virtual sensors, progressive Bayesian inference and historical investigation
 
+For the current WP1–WP4 code organization and Surfer OS product responsibilities,
+see [updated product design](../SURFER_OS.md) and
+[ADR 0004](../decisions/0004-work-package-research-monorepo.md). The existing core
+contracts below remain unchanged; the new synthetic HTTP/session harness is not
+an implementation of the full physiological or distributed graph.
+
 Design integration revision 3: the existing Bayesian blueprint, virtual-sensor addendum and Active Historical Investigation extension integrated through PR #2. This is accepted design intent under [ADR 0001](../decisions/0001-modular-monolith-first.md), with [ADR 0002](../decisions/0002-lightweight-assurance-traceability.md) traceability for affected invariants; concrete APIs remain design sketches. This is a logical, in-process-first design. Current code still implements only synthetic replay and illustrative meal inference.
 
 **The sensor is the question, not the hardware.** Authorized numerical, time-series, image, audio, event and log streams are potential evidence sources. Reusable sensing infrastructure is independent of the diabetes-specific physiological model. Other applications are possible reuse, not new product commitments.
