@@ -253,6 +253,36 @@ def offline_controls():
         ),
     ):
         replacements.append(("project_live/history.py", old, new, history_command, diagnostic))
+    loop_command = [
+        sys.executable,
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_loop_observations.py",
+    ]
+    for old, new, diagnostic in (
+        (
+            'if not item.synthetic and (not consent or os.environ.get("GITHUB_ACTIONS") == "true"):',
+            "if False:",
+            "test_real_data_requires_consent_and_is_refused_in_ci",
+        ),
+        (
+            "(i for i in items if i.received_at <= as_of)",
+            "(i for i in items)",
+            "test_asof_excludes_late_arrivals_without_rewriting_earlier_snapshots",
+        ),
+        (
+            "if item.display_only or item.user_entered or item.condition is not None:",
+            "if False:",
+            "test_quality_markers_are_not_treated_as_exact_measurements",
+        ),
+    ):
+        replacements.append(
+            ("project_live/loop_observations.py", old, new, loop_command, diagnostic)
+        )
     with tempfile.TemporaryDirectory() as temporary:
         copy = Path(temporary) / "repo"
         copy.mkdir()

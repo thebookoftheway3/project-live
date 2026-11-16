@@ -43,12 +43,24 @@ ALLOWED_IMPORTS = {
         "project_live.sensing",
         "project_live.safety_boundary",
     },
+    "loop_observations": {
+        "stat",
+        "hashlib",
+        "json",
+        "os",
+        "dataclasses",
+        "datetime",
+        "math",
+        "pathlib",
+        "project_live.sensing",
+    },
     "cli": {
         "argparse",
         "json",
         "project_live.replay",
         "project_live.pipeline",
         "project_live.history",
+        "project_live.loop_observations",
     },
 }
 
