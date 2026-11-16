@@ -1,5 +1,11 @@
 # Requirements ledger — virtual-sensor integration revision 3
 
+The [Surfer OS product update](../SURFER_OS.md) maps these requirements to WP1–WP4.
+The [new experiments and verification record](../assurance/WP_REFACTOR_VALIDATION.md)
+do not silently promote unmet requirements to validated behavior. In particular,
+R01/R07/R12 remain non-actuation boundaries, R14 prompting remains experimental,
+and R09's local G6 consumer does not establish G7 or live device interoperability.
+
 Source: the governing blueprint plus explicit project direction. PR #2 accepts R22–R30 as design requirements; general safeguards remain incomplete and concrete API sketches remain proposed. The [first LIVE-022 beverage increment](../assurance/LIVE022_INCREMENT.md) provides bounded synthetic implementation evidence only. Documentation acceptance is not implementation or validation.
 
 | ID | Requirement | Status | Required evidence |

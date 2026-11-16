@@ -38,9 +38,20 @@ For documentation, check relative links and anchors and run `git diff --check`. 
 
 ## Attribution and licensing
 
-Original contributions are accepted under the [MIT License](LICENSE); contributors retain copyright. By submitting, confirm that you may contribute the material under those terms. Preserve author attribution, third-party notices and the provenance and exact revisions of imported work in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) or the relevant manifest. Do not copy incompatible or unlicensed material. Identify substantial tool-generated work and verify its claims and provenance as you would other contributed work.
+Contributions follow the destination file's licence: the preserved foundation and
+unmarked project files are [MIT](LICENSE); new source files marked AGPL-3.0-only
+use [AGPLv3](LICENSE-AGPLv3). See [scope and OEM limitations](LICENSE-COMMERCIAL.md).
+Contributors retain copyright. By submitting, confirm that you may contribute the
+material under its applicable terms. Preserve attribution, third-party notices and
+exact imported revisions in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) or the
+relevant manifest. Identify substantial tool-generated work and verify its claims
+and provenance as you would other contributed work.
 
-The present inbound MIT policy is sufficient for original project contributions. No copyright assignment, CLA or new sign-off requirement is introduced. A change to that policy requires an explicit reviewed governance decision. Linked research and upstream code retain their own licences.
+The owner-requested WP refactor adds explicit AGPL scopes for new source files;
+existing MIT grants are preserved. No copyright assignment, CLA, blanket commercial
+relicensing authority or new sign-off requirement is introduced. Further licence
+changes require an explicit reviewed decision. Linked research and upstream code
+retain their own licences.
 
 ## Upstream changes
 

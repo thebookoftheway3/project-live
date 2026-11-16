@@ -1,5 +1,11 @@
 # Project LIVE — direction and open decisions
 
+Current product/work-package update (2026-11-16): [Surfer OS within Project LIVE](SURFER_OS.md)
+and [ADR 0004](decisions/0004-work-package-research-monorepo.md). The older supplied
+Surfer OS document is inspiration; the WP1–WP4 request defines the refactor.
+Implementation remains non-actuating research with explicit integration gaps.
+The material below preserves the earlier design direction and decision history.
+
 Updated 24 October 2026. Integration revision 3 extends the Bayesian blueprint with the project-supplied general-purpose virtual-sensor and progressive-inference addendum, now including Active Historical Investigation through PR #2.
 
 ## Governing direction

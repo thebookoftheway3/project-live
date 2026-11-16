@@ -286,11 +286,23 @@ def offline_controls():
     with tempfile.TemporaryDirectory() as temporary:
         copy = Path(temporary) / "repo"
         copy.mkdir()
-        for name in ("project_live", "tests", "tools", "docs", ".github", "data", "requirements"):
+        for name in (
+            "tests",
+            "tools",
+            "docs",
+            ".github",
+            "data",
+            "requirements",
+            "wp1-deterministic-mmu-bridge",
+            "wp2-bayesian-voi-engine",
+            "wp3-edge-vision-pipelines",
+            "wp4-passive-ui-clients",
+        ):
             shutil.copytree(ROOT / name, copy / name, ignore=shutil.ignore_patterns("__pycache__"))
+        (copy / "project_live").symlink_to("wp2-bayesian-voi-engine/src/project_live")
         for path in ROOT.glob("*.md"):
             shutil.copy2(path, copy / path.name)
-        for name in ("pyproject.toml", "LICENSE", ".gitignore"):
+        for name in ("pyproject.toml", "LICENSE", "LICENSE-AGPLv3", ".gitignore"):
             shutil.copy2(ROOT / name, copy / name)
         for name, addition, command, diagnostic in probes:
             path = copy / name

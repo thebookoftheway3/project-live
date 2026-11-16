@@ -1,0 +1,7 @@
+**
+!Dockerfile
+!requirements-service.txt
+!src/
+!src/preemption_api.py
+!src/surfer_session.py
+!src/voi_attention_gate.py

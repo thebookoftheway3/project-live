@@ -1,5 +1,12 @@
 # Implementation backlog — virtual sensors and Bayesian inference
 
+Surfer OS/WP refactor increment (2026-11-16): [product mapping](SURFER_OS.md) and
+[verification plan](GRANT_VERIFICATION_PLAN.md) organize work without closing the
+existing requirements. WP1 extends bench feasibility for LIVE-014; WP2 experiments
+contribute to LIVE-012/013/019/021; WP3 prototypes contribute to LIVE-018/020/021;
+WP4 scaffolds contribute to LIVE-013/015/016. Device integration, field benefit,
+full multi-temporal physiology and LIVE-022 completion remain outstanding.
+
 Integration revision 3 preserves existing IDs, extends LIVE-004/005/008/009/012, and now extends LIVE-019/022 for Active Historical Investigation. LIVE-023 is the only new task: the minimal indexed read interface for retained evidence. Filtering/smoothing, scheduling and backfill extend existing work instead of creating another engine. Priorities: P0 = first synthetic slice, P1 = following research/integration, P2 = later validated scope. Status refers to implemented research capability, not documentation or clinical validation. Requirements are accepted design intent on PR #2 merge; “Proposed” below denotes concrete designs still awaiting implementation decisions.
 
 Dependencies are engineering prerequisites, not a demand to finish a full framework. LIVE-022 is the **first complete implementation milestone**, composed of small independently reviewed PRs implementing minimal in-process subsets of its dependencies. LIVE-008 supplies fixtures and a posterior oracle; LIVE-022 owns their end-to-end composition, avoiding a circular dependency or duplicate demo task. The required historical phase is part of that complete milestone, not a separate analytics track. A first detector → versioned evidence → belief update → immutable snapshot/replay increment is partial progress only; all historical and negative-case acceptance gates remain required before completion. LIVE-023 supplies a small index and bounded query interface; LIVE-012 ranks its queries and LIVE-019 executes them. LIVE-003/014 are independent later device tracks.

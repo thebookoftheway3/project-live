@@ -10,3 +10,21 @@ The upstream Loop license includes MIT terms and exceptions for particular frame
 - MIT license reference: https://opensource.org/license/mit
 
 Review each component's own notices before copying or redistributing it. Linked research documents retain their original ownership and are not relicensed by this repository.
+# Surfer OS refactor provenance (2026-11-16)
+
+The WP1–WP4 additions are Codex-assisted original research scaffolding; no Loop,
+OmnipodKit, camera/model implementation or device SDK was copied into these paths.
+Supplied design references are identified in [the source manifest](docs/SOURCE_MANIFEST.json),
+with private context omitted from the public derivative. Existing attribution and
+MIT notices remain intact after relocation.
+
+New AGPL-marked source scopes and the commercial-rights limitations are described
+in [LICENSE-COMMERCIAL.md](LICENSE-COMMERCIAL.md). The full AGPL licence text is
+copied unmodified from GNU. Optional FastAPI/uvicorn/httpx dependencies and their
+transitive packages retain their own licences; exact versions/hashes are in
+`wp2-bayesian-voi-engine/requirements-service.txt`. Public Python, Mosquitto and
+Ollama container index digests are recorded in that package's `image-lock.json`.
+Neither pinning nor this record grants rights to third-party model weights.
+SAM 2, Depth Anything V2, Re-ID and Brilliant device implementations are referenced
+but not vendored or downloaded. Review each selected checkpoint/SDK licence before
+future integration or OEM packaging.
