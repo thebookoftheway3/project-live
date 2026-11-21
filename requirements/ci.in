@@ -1,5 +1,5 @@
 # Development verification only; no runtime dependencies. See docs/assurance/CI_REVIEW.md.
-coverage==7.17.0
+coverage==7.17.3
 pip-audit==2.10.1
 PyYAML==6.0.3
 ruff==0.17.4
